@@ -56,7 +56,6 @@ class StealthConfig:
             yield 'console.log("last script")'
         ```
     """
-
     # load script options
     webdriver: bool = True
     webgl_vendor: bool = True

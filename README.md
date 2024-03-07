@@ -9,7 +9,9 @@ $ pip install playwright-stealth
 ```
 
 ## Usage
+
 ### sync
+
 ```python
 
 from playwright.sync_api import sync_playwright
@@ -25,7 +27,9 @@ with sync_playwright() as p:
         browser.close()
 
 ```
+
 ### async
+
 ```python
 # -*- coding: utf-8 -*-
 import asyncio
