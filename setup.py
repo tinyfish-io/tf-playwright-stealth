@@ -4,11 +4,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="playwright-stealth",
-    version="1.0.7",
-    author="AtuboDad",
-    author_email="lcjasas@sina.com",
-    description="playwright stealth",
+    name="tf-playwright-stealth",
+    version="0.0.1",
+    description="Fork of https://github.com/AtuboDad/playwright_stealth",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/AtuboDad/playwright_stealth",
