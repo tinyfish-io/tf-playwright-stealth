@@ -58,3 +58,21 @@ asyncio.get_event_loop().run_until_complete(main())
 ### playwright without stealth
 
 ![playwright with stealth](./images/example_without_stealth.png)
+
+
+## Release
+
+```bash
+pip install setuptools wheel twine
+```
+```bash
+python setup.py sdist bdist_wheel
+```
+```bash
+# sanity check 
+twine check dist/*
+```
+```bash
+# upload
+twine upload dist/*
+```
