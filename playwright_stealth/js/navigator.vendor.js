@@ -1,3 +1,5 @@
-Object.defineProperty(Object.getPrototypeOf(navigator), 'vendor', {
-    get: () => opts.navigator_vendor || 'Google Inc.',
-})
+utils.replaceGetterWithProxy(
+  Object.getPrototypeOf(navigator),
+  "vendor",
+  utils.makeHandler().getterValue(opts.vendor)
+);
