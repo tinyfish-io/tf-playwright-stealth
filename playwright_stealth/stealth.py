@@ -56,6 +56,7 @@ class StealthConfig:
             yield 'console.log("last script")'
         ```
     """
+
     # load script options
     webdriver: bool = True
     webgl_vendor: bool = True
@@ -139,11 +140,23 @@ class StealthConfig:
 
 def stealth_sync(page: SyncPage, config: StealthConfig = None):
     """teaches synchronous playwright Page to be stealthy like a ninja!"""
+    scripts = []
+
     for script in (config or StealthConfig()).enabled_scripts:
-        page.add_init_script(script)
+        scripts.append(script)
+
+    combined_script = "\n".join(scripts)
+
+    page.add_init_script(combined_script)
 
 
 async def stealth_async(page: AsyncPage, config: StealthConfig = None):
     """teaches asynchronous playwright Page to be stealthy like a ninja!"""
+    scripts = []
+
     for script in (config or StealthConfig()).enabled_scripts:
-        await page.add_init_script(script)
+        scripts.append(script)
+
+    combined_script = "\n".join(scripts)
+
+    await page.add_init_script(combined_script)
