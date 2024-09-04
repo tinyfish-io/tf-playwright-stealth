@@ -20,7 +20,6 @@ SCRIPTS: Dict[str, str] = {
     "chrome_app": from_file("chrome.app.js"),
     "chrome_runtime": from_file("chrome.runtime.js"),
     "chrome_load_times": from_file("chrome.load.times.js"),
-    "chrome_hairline": from_file("chrome.hairline.js"),
     "generate_magic_arrays": from_file("generate.magic.arrays.js"),
     "iframe_content_window": from_file("iframe.contentWindow.js"),
     "media_codecs": from_file("media.codecs.js"),
@@ -28,7 +27,6 @@ SCRIPTS: Dict[str, str] = {
     "navigator_plugins": from_file("navigator.plugins.js"),
     "navigator_permissions": from_file("navigator.permissions.js"),
     "navigator_languages": from_file("navigator.languages.js"),
-    "navigator_platform": from_file("navigator.platform.js"),
     "navigator_user_agent": from_file("navigator.userAgent.js"),
     "navigator_hardware_concurrency": from_file("navigator.hardwareConcurrency.js"),
     "outerdimensions": from_file("window.outerdimensions.js"),
@@ -69,12 +67,10 @@ class StealthConfig:
     navigator_hardware_concurrency: int = 4
     navigator_languages: bool = True
     navigator_permissions: bool = True
-    navigator_platform: bool = True
     navigator_plugins: bool = True
     navigator_user_agent: bool = True
     navigator_vendor: bool = True
     outerdimensions: bool = True
-    hairline: bool = True
 
     # options
     vendor: str = "Intel Inc."
@@ -108,8 +104,6 @@ class StealthConfig:
             yield SCRIPTS["chrome_app"]
         if self.chrome_csi:
             yield SCRIPTS["chrome_csi"]
-        if self.hairline:
-            yield SCRIPTS["chrome_hairline"]
         if self.chrome_load_times:
             yield SCRIPTS["chrome_load_times"]
         if self.chrome_runtime:
@@ -122,8 +116,6 @@ class StealthConfig:
             yield SCRIPTS["navigator_languages"]
         if self.navigator_permissions:
             yield SCRIPTS["navigator_permissions"]
-        if self.navigator_platform:
-            yield SCRIPTS["navigator_platform"]
         if self.navigator_plugins:
             yield SCRIPTS["navigator_plugins"]
         if self.navigator_user_agent:
