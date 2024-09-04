@@ -5,11 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="tf-playwright-stealth",
-<<<<<<< Updated upstream
-    version="0.0.2",
-=======
     version="0.0.3",
->>>>>>> Stashed changes
     description="Fork of https://github.com/AtuboDad/playwright_stealth",
     long_description=long_description,
     long_description_content_type="text/markdown",
