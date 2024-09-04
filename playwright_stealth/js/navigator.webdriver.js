@@ -1,14 +1,8 @@
-// this is close to the most accurate way to emulate this: https://stackoverflow.com/a/69533548
-Object.defineProperty(Object.getPrototypeOf(navigator), 'webdriver', {
-    set: undefined,
-    enumerable: true,
-    configurable: true,
-    get: new Proxy(
-        Object.getOwnPropertyDescriptor(Object.getPrototypeOf(navigator), 'webdriver').get,
-        { apply: (target, thisArg, args) => {
-            // emulate getter call validation
-            Reflect.apply(target, thisArg, args);
-            return false;
-        }}
-    )
-});
+if (navigator.webdriver === false) {
+  // Post Chrome 89.0.4339.0 and already good
+} else if (navigator.webdriver === undefined) {
+  // Pre Chrome 89.0.4339.0 and already good
+} else {
+  // Pre Chrome 88.0.4291.0 and needs patching
+  delete Object.getPrototypeOf(navigator).webdriver;
+}
