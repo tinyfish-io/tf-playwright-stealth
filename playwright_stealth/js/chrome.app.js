@@ -9,6 +9,11 @@ if (!window.chrome) {
   });
 }
 
+// Ensures that the chrome object is not undefined in headless mode
+window.chrome = {
+  runtime: {},
+};
+
 // That means we're running headful and don't need to mock anything
 if ("app" in window.chrome) {
   return; // Nothing to do here
