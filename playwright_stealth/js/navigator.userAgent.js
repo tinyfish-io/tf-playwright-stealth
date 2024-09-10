@@ -85,6 +85,11 @@ const _getPlatformModel = () =>
 
 const _getMobile = () => ua.includes("Android");
 
+// Ensures that deviceMemory is not 0
+const _getDeviceMemory = () => {
+  return 8;
+};
+
 const override = {
   userAgent: ua,
   platform: _getPlatform(),
@@ -97,6 +102,7 @@ const override = {
     model: _getPlatformModel(),
     mobile: _getMobile(),
   },
+  deviceMemory: _getDeviceMemory(),
 };
 
 // In case of headless, override the acceptLanguage in CDP.
