@@ -5,7 +5,7 @@ Transplanted from [puppeteer-extra-plugin-stealth](https://github.com/berstend/p
 ## Install
 
 ```
-$ pip install playwright-stealth
+pip install tf-playwright-stealth
 ```
 
 ## Usage
