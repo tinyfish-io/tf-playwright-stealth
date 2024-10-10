@@ -136,8 +136,29 @@ def stealth_sync(page: SyncPage, config: StealthConfig = None):
     for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
 
+    add_stealth_headers(page)
+
     combined_script = "\n".join(scripts)
 
+    page.add_init_script(combined_script)
+
+
+async def stealth_async(page: AsyncPage, config: StealthConfig = None):
+    """teaches asynchronous playwright Page to be stealthy like a ninja!"""
+    scripts = []
+
+    for script in (config or StealthConfig()).enabled_scripts:
+        scripts.append(script)
+
+    add_stealth_headers(page)
+
+    combined_script = "\n".join(scripts) + "\nconsole.log(`end`);"
+
+    await page.add_init_script(combined_script)
+
+
+async def add_stealth_headers(page: AsyncPage):
+    """Adds stealth headers to the page"""
     page.route(
         "**/*",
         lambda route, request: route.continue_(
@@ -161,17 +182,3 @@ def stealth_sync(page: SyncPage, config: StealthConfig = None):
             }
         ),
     )
-
-    page.add_init_script(combined_script)
-
-
-async def stealth_async(page: AsyncPage, config: StealthConfig = None):
-    """teaches asynchronous playwright Page to be stealthy like a ninja!"""
-    scripts = []
-
-    for script in (config or StealthConfig()).enabled_scripts:
-        scripts.append(script)
-
-    combined_script = "\n".join(scripts) + "\nconsole.log(`end`);"
-
-    await page.add_init_script(combined_script)
