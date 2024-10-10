@@ -1,9 +1,14 @@
-let ua =
-  this.opts.userAgent ||
-  (await page.browser().userAgent()).replace("HeadlessChrome/", "Chrome/");
 
+
+console.log("navigator.userAgent", opts)
+
+let ua =
+  opts.userAgent ||
+  navigator.userAgent.replace("HeadlessChrome/", "Chrome/");
+
+console.log("ua", ua)
 if (
-  this.opts.maskLinux &&
+  opts.maskLinux &&
   ua.includes("Linux") &&
   !ua.includes("Android") // Skip Android user agents since they also contain Linux
 ) {
@@ -11,9 +16,7 @@ if (
 }
 
 // Full version number from Chrome
-const uaVersion = ua.includes("Chrome/")
-  ? ua.match(/Chrome\/([\d|.]+)/)[1]
-  : (await page.browser().version()).match(/\/([\d|.]+)/)[1];
+const uaVersion = ua.match(/Chrome\/([\d|.]+)/)[1]
 
 // Get platform identifier (short or long version)
 const _getPlatform = (extended = false) => {
@@ -60,6 +63,14 @@ const _getBrands = () => {
     version: seed,
   };
 
+  // remove HeadlessChrome
+  for (let brand of greasedBrandVersionList) {
+    console.log("brand", brand)
+    if (brand.brand.includes("HeadlessChrome")) {
+      brand.brand = brand.brand.replace("HeadlessChrome", "Chrome")
+    }
+  }
+
   return greasedBrandVersionList;
 };
 
@@ -90,10 +101,11 @@ const _getDeviceMemory = () => {
   return 8;
 };
 
+const appVersion = navigator.appVersion.replace("HeadlessChrome", "Chrome")
 const override = {
   userAgent: ua,
   platform: _getPlatform(),
-  userAgentMetadata: {
+  userAgentData: {
     brands: _getBrands(),
     fullVersion: uaVersion,
     platform: _getPlatform(true),
@@ -102,6 +114,16 @@ const override = {
     model: _getPlatformModel(),
     mobile: _getMobile(),
   },
+  appVersion: appVersion,
+  // userAgentMetadata: {
+  //   brands: _getBrands(),
+  //   fullVersion: uaVersion,
+  //   platform: _getPlatform(true),
+  //   platformVersion: _getPlatformVersion(),
+  //   architecture: _getPlatformArch(),
+  //   model: _getPlatformModel(),
+  //   mobile: _getMobile(),
+  // },
   deviceMemory: _getDeviceMemory(),
 };
 
@@ -109,14 +131,26 @@ const override = {
 // This is not preferred, as it messed up the header order.
 // On headful, we set the user preference language setting instead.
 if (this._headless) {
-  override.acceptLanguage = this.opts.locale || "en-US,en";
+  override.acceptLanguage = opts.locale || "en-US,en";
 }
 
-this.debug("onPageCreated - Will set these user agent options", {
-  override,
-  opts: this.opts,
+
+
+// this.debug("onPageCreated - Will set these user agent options", {
+//   override,
+//   opts: opts,
+// });
+console.log("ua")
+navigator.__defineGetter__('userAgent', function(){
+  return override.userAgent;
 });
 
-const client =
-  typeof page._client === "function" ? page._client() : page._client;
-client.send("Network.setUserAgentOverride", override);
+navigator.__defineGetter__('userAgentData', function(){
+  return override.userAgentData;
+});
+
+navigator.__defineGetter__('appVersion', function(){
+  return override.appVersion;
+});
+
+console.log("HEHEH", navigator.appVersion)

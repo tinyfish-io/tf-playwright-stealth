@@ -1,3 +1,4 @@
+console.log("PERMISSIONS")
 const isSecure = document.location.protocol.startsWith("https");
 
 // In headful on secure origins the permission should be "default", not "denied"
@@ -37,3 +38,4 @@ if (!isSecure) {
   // Note: Don't use `Object.getPrototypeOf` here
   utils.replaceWithProxy(Permissions.prototype, "query", handler);
 }
+console.log("PERMISSIONS2")

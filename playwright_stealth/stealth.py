@@ -133,11 +133,14 @@ class StealthConfig:
 def stealth_sync(page: SyncPage, config: StealthConfig = None):
     """teaches synchronous playwright Page to be stealthy like a ninja!"""
     scripts = []
+    print("stealth_sync")
 
     for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
 
     combined_script = "\n".join(scripts)
+
+    page.on("console", lambda msg: print("CONSOLE LOG:", msg.text))
 
     page.add_init_script(combined_script)
 
@@ -149,6 +152,8 @@ async def stealth_async(page: AsyncPage, config: StealthConfig = None):
     for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
 
-    combined_script = "\n".join(scripts)
+    combined_script = "\n".join(scripts) + "\nconsole.log(`end`);"
+
+    page.on("console", lambda msg: print("CONSOLE LOG:", msg.text))
 
     await page.add_init_script(combined_script)

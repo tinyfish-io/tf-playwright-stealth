@@ -166,17 +166,18 @@ utils.replaceProperty = (obj, propName, descriptorOverrides = {}) => {
  */
 utils.preloadCache = () => {
   if (utils.cache) {
-    return;
+    // return;
+  } else {
+    utils.cache = {
+      // Used in our proxies
+      Reflect: {
+        get: Reflect.get.bind(Reflect),
+        apply: Reflect.apply.bind(Reflect),
+      },
+      // Used in `makeNativeString`
+      nativeToStringStr: Function.toString + "", // => `function toString() { [native code] }`
+    };
   }
-  utils.cache = {
-    // Used in our proxies
-    Reflect: {
-      get: Reflect.get.bind(Reflect),
-      apply: Reflect.apply.bind(Reflect),
-    },
-    // Used in `makeNativeString`
-    nativeToStringStr: Function.toString + "", // => `function toString() { [native code] }`
-  };
 };
 
 /**
@@ -588,3 +589,4 @@ utils.memoize = (fn) => {
 // Stuff starting below this line is NodeJS specific.
 // --
 // module.exports = utils
+utils.init()
