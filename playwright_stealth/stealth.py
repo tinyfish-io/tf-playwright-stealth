@@ -144,7 +144,7 @@ def stealth_sync(page: SyncPage, config: StealthConfig = None):
         lambda route, request: route.continue_(
             headers={
                 **request.headers,
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "sec-ch-ua": '"Not A;Brand";v="99", "Chromium";v="118", "Google Chrome";v="118"',
             }
         ),
