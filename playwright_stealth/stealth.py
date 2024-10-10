@@ -133,14 +133,22 @@ class StealthConfig:
 def stealth_sync(page: SyncPage, config: StealthConfig = None):
     """teaches synchronous playwright Page to be stealthy like a ninja!"""
     scripts = []
-    print("stealth_sync")
 
     for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
 
     combined_script = "\n".join(scripts)
 
-    page.on("console", lambda msg: print("CONSOLE LOG:", msg.text))
+    page.route(
+        "**/*",
+        lambda route, request: route.continue_(
+            headers={
+                **request.headers,
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+                "sec-ch-ua": '"Not A;Brand";v="99", "Chromium";v="118", "Google Chrome";v="118"',
+            }
+        ),
+    )
 
     page.add_init_script(combined_script)
 
@@ -153,7 +161,5 @@ async def stealth_async(page: AsyncPage, config: StealthConfig = None):
         scripts.append(script)
 
     combined_script = "\n".join(scripts) + "\nconsole.log(`end`);"
-
-    page.on("console", lambda msg: print("CONSOLE LOG:", msg.text))
 
     await page.add_init_script(combined_script)

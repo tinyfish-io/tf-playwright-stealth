@@ -1,12 +1,7 @@
-
-
-console.log("navigator.userAgent", opts)
-
 let ua =
   opts.userAgent ||
   navigator.userAgent.replace("HeadlessChrome/", "Chrome/");
 
-console.log("ua", ua)
 if (
   opts.maskLinux &&
   ua.includes("Linux") &&
@@ -65,7 +60,6 @@ const _getBrands = () => {
 
   // remove HeadlessChrome
   for (let brand of greasedBrandVersionList) {
-    console.log("brand", brand)
     if (brand.brand.includes("HeadlessChrome")) {
       brand.brand = brand.brand.replace("HeadlessChrome", "Chrome")
     }
@@ -140,7 +134,6 @@ if (this._headless) {
 //   override,
 //   opts: opts,
 // });
-console.log("ua")
 navigator.__defineGetter__('userAgent', function(){
   return override.userAgent;
 });
@@ -152,5 +145,3 @@ navigator.__defineGetter__('userAgentData', function(){
 navigator.__defineGetter__('appVersion', function(){
   return override.appVersion;
 });
-
-console.log("HEHEH", navigator.appVersion)
