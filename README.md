@@ -2,10 +2,12 @@
 
 Transplanted from [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth), **Not perfect**.
 
+It was originally forked from https://github.com/AtuboDad/playwright_stealth which doesn't seem to be maintained anymore.
+
 ## Install
 
 ```
-$ pip install playwright-stealth
+pip install tf-playwright-stealth
 ```
 
 ## Usage

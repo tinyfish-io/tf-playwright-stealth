@@ -95,7 +95,6 @@ const _getDeviceMemory = () => {
   return 8;
 };
 
-const appVersion = navigator.appVersion.replace("HeadlessChrome", "Chrome")
 const override = {
   userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
   platform: "macOS",
@@ -110,7 +109,6 @@ const override = {
     platformVersion: "15.0.0",
     architecture: "arm",
   },
-  appVersion: appVersion,
   deviceMemory: _getDeviceMemory(),
 };
 
