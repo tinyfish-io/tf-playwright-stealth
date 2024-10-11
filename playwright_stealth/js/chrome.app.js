@@ -15,9 +15,7 @@ window.chrome = {
 };
 
 // That means we're running headful and don't need to mock anything
-if ("app" in window.chrome) {
-  // return; // Nothing to do here
-} else {
+if (!("app" in window.chrome)) {
 
   const makeError = {
     ErrorInInvocation: (fn) => {

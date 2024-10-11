@@ -10,18 +10,11 @@ if (!window.chrome) {
 }
 
 // That means we're running headful and don't need to mock anything
-if ("loadTimes" in window.chrome) {
-  // return; // Nothing to do here
-}
+if (!("loadTimes" in window.chrome)) {
+
 
 // Check that the Navigation Timing API v1 + v2 is available, we need that
-if (
-  !window.performance ||
-  !window.performance.timing ||
-  !window.PerformancePaintTiming
-) {
-  // return;
-} else {
+if (window.performance && window.performance.timing && window.PerformancePaintTiming) {
 
   const { performance } = window;
   
@@ -118,5 +111,5 @@ if (
     };
   };
   utils.patchToString(window.chrome.loadTimes);
+  }
 }
-
