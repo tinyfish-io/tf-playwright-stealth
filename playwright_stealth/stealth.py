@@ -3,7 +3,6 @@ import json
 import os
 from dataclasses import dataclass
 from typing import Tuple, Optional, Dict
-
 from playwright.async_api import Page as AsyncPage
 from playwright.sync_api import Page as SyncPage
 
@@ -137,6 +136,8 @@ def stealth_sync(page: SyncPage, config: StealthConfig = None):
     for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
 
+    add_stealth_headers(page)
+
     combined_script = "\n".join(scripts)
 
     page.add_init_script(combined_script)
@@ -149,6 +150,35 @@ async def stealth_async(page: AsyncPage, config: StealthConfig = None):
     for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
 
-    combined_script = "\n".join(scripts)
+    add_stealth_headers(page)
+
+    combined_script = "\n".join(scripts) + "\nconsole.log(`end`);"
 
     await page.add_init_script(combined_script)
+
+
+async def add_stealth_headers(page: AsyncPage):
+    """Adds stealth headers to the page"""
+    page.route(
+        "**/*",
+        lambda route, request: route.continue_(
+            headers={
+                **request.headers,
+                "sec-ch-ua": '"Chromium";v="129", "Not=A?Brand";v="8"',
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": '"macOS"',
+                "sec-ch-ua-form-factors": "desktop",
+                "upgrade-insecure-requests": "1",
+                "dnt": "1",
+                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+                "accept": "	text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                "sec-fetch-site": "cross-site",
+                "sec-fetch-mode": "navigate",
+                "sec-fetch-user": "?1",
+                "sec-fetch-dest": "document",
+                "referer": "https://www.google.com/",
+                "accept-encoding": "gzip, deflate, br, zstd",
+                "accept-language": "en-US,en;q=0.9",
+            }
+        ),
+    )

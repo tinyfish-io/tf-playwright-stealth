@@ -1,9 +1,9 @@
 let ua =
-  this.opts.userAgent ||
-  (await page.browser().userAgent()).replace("HeadlessChrome/", "Chrome/");
+  opts.userAgent ||
+  navigator.userAgent.replace("HeadlessChrome/", "Chrome/");
 
 if (
-  this.opts.maskLinux &&
+  opts.maskLinux &&
   ua.includes("Linux") &&
   !ua.includes("Android") // Skip Android user agents since they also contain Linux
 ) {
@@ -11,9 +11,7 @@ if (
 }
 
 // Full version number from Chrome
-const uaVersion = ua.includes("Chrome/")
-  ? ua.match(/Chrome\/([\d|.]+)/)[1]
-  : (await page.browser().version()).match(/\/([\d|.]+)/)[1];
+const uaVersion = ua.match(/Chrome\/([\d|.]+)/)[1]
 
 // Get platform identifier (short or long version)
 const _getPlatform = (extended = false) => {
@@ -60,6 +58,13 @@ const _getBrands = () => {
     version: seed,
   };
 
+  // remove HeadlessChrome
+  for (let brand of greasedBrandVersionList) {
+    if (brand.brand.includes("HeadlessChrome")) {
+      brand.brand = brand.brand.replace("HeadlessChrome", "Chrome")
+    }
+  }
+
   return greasedBrandVersionList;
 };
 
@@ -91,16 +96,18 @@ const _getDeviceMemory = () => {
 };
 
 const override = {
-  userAgent: ua,
-  platform: _getPlatform(),
-  userAgentMetadata: {
-    brands: _getBrands(),
-    fullVersion: uaVersion,
-    platform: _getPlatform(true),
-    platformVersion: _getPlatformVersion(),
-    architecture: _getPlatformArch(),
-    model: _getPlatformModel(),
-    mobile: _getMobile(),
+  userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+  platform: "macOS",
+  userAgentData: {
+    brands: [
+      {
+        brand: "Chromium",
+        version: "129",
+      },
+      {"brand":"Not=A?Brand","version":"8"}
+    ],
+    platformVersion: "15.0.0",
+    architecture: "arm",
   },
   deviceMemory: _getDeviceMemory(),
 };
@@ -109,14 +116,25 @@ const override = {
 // This is not preferred, as it messed up the header order.
 // On headful, we set the user preference language setting instead.
 if (this._headless) {
-  override.acceptLanguage = this.opts.locale || "en-US,en";
+  override.acceptLanguage = opts.locale || "en-US,en";
 }
 
-this.debug("onPageCreated - Will set these user agent options", {
-  override,
-  opts: this.opts,
+navigator.__defineGetter__('userAgent', function(){
+  return override.userAgent;
 });
 
-const client =
-  typeof page._client === "function" ? page._client() : page._client;
-client.send("Network.setUserAgentOverride", override);
+navigator.__defineGetter__('userAgentData', function(){
+  return override.userAgentData;
+});
+
+navigator.__defineGetter__('appVersion', function(){
+  return override.appVersion;
+});
+
+navigator.__defineGetter__('vendor', function(){
+  return "Google Inc.";
+});
+
+navigator.__defineGetter__('doNotTrack', function(){
+  return "1";
+});
