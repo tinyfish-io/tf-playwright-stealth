@@ -1,3 +1,4 @@
+
 data = {
   mimeTypes: [
     {
@@ -47,19 +48,38 @@ data = {
   ],
 };
 
-fns = utils.materializeFns(fns);
-
-// That means we're running headful
-const hasPlugins = "plugins" in navigator && navigator.plugins.length;
-if (hasPlugins) {
-  return; // nothing to do here
+const generateMimeTypeArray = mimeTypesData => {
+  return generateMagicArray(
+    mimeTypesData,
+    MimeTypeArray.prototype,
+    MimeType.prototype,
+    'type'
+  )
 }
 
-const mimeTypes = fns.generateMimeTypeArray(utils, fns)(data.mimeTypes);
-const plugins = fns.generatePluginArray(utils, fns)(data.plugins);
+const generatePluginArray = pluginsData => {
+  return generateMagicArray(
+    pluginsData,
+    PluginArray.prototype,
+    Plugin.prototype,
+    'name'
+  )
+}
+
+// That means we're running headful
+let hasPlugins = "plugins" in navigator && navigator.plugins.length;
+hasPlugins = false
+if (!hasPlugins) {
+  
+
+
+
+const mimeTypes = generateMimeTypeArray(data.mimeTypes);
+const plugins = generatePluginArray(data.plugins);
 // Plugin and MimeType cross-reference each other, let's do that now
 // Note: We're looping through `data.plugins` here, not the generated `plugins`
 for (const pluginData of data.plugins) {
+
   pluginData.__mimeTypes.forEach((type, index) => {
     plugins[pluginData.name][index] = mimeTypes[type];
 
@@ -90,3 +110,4 @@ const patchNavigator = (name, value) =>
 
 patchNavigator("mimeTypes", mimeTypes);
 patchNavigator("plugins", plugins);
+}
