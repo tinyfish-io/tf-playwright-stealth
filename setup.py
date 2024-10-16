@@ -17,7 +17,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     package_data={"playwright_stealth": ["js/*.js"]},
-    python_requires=">=3, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+    python_requires=">=3, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",  # Should this be >=3.8? No need to support versions our SDK doesn't support right?
     install_requires=[
         "playwright",
     ],
