@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "tf-playwright-stealth"
+packages = [
+    { include = "playwright_stealth" },
+]
+version = "1.0.0"
+description = "Makes agentql stealthy like a ninja!"
+authors = ["TinyGambe <gambe@tinyfish.io>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+playwright = "^1"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pylint = "*"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
