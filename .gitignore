@@ -108,4 +108,3 @@ venv.bak/
 
 /tests/screenshots
 .DS_Store
-/tests/.DS_Store
