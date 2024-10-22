@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from playwright.async_api import Page as AsyncPage
 from playwright.sync_api import Page as SyncPage
-from playwright_stealth.core.stealth_config import StealthConfig
+from playwright_stealth.core._stealth_config import StealthConfig
 
 
 def stealth_sync(page: SyncPage, config: StealthConfig = None):
