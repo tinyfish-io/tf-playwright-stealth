@@ -47,3 +47,8 @@ with async_playwright() as p:
     await page.screenshot(path=f"example_with_stealth_async.png", full_page=True)
     await browser.close()
 ```
+## Results
+From [bot.sannysoft.com](https://bot.sannysoft.com/)
+| Headless | Headful |
+|----------|---------|
+| ![Headless](./images/example_with_stealth_headless.png) | ![Headful](./images/example_with_stealth_headful.png) |
