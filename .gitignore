@@ -104,4 +104,6 @@ venv.bak/
 .mypy_cache/
 
 .vscode/
-.idea/
+
+tests/e2e/screenshots
+.DS_Store
