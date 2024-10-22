@@ -1,8 +1,7 @@
 import json
 from dataclasses import dataclass
-from typing import Tuple, Optional
+from typing import Dict, Tuple, Optional
 import os
-from typing import Dict
 
 
 def from_file(name) -> str:
@@ -76,10 +75,13 @@ class StealthConfig:
     nav_user_agent: str = None
     nav_platform: str = None
     languages: Tuple[str] = ("en-US", "en")
-    runOnInsecureOrigins: Optional[bool] = None
+    run_on_insecure_origins: Optional[bool] = None
 
     @property
     def enabled_scripts(self):
+        """
+        Generate the scripts to be executed.
+        """
         opts = json.dumps(
             {
                 "webgl_vendor": self.vendor,
@@ -88,7 +90,7 @@ class StealthConfig:
                 "navigator_platform": self.nav_platform,
                 "navigator_user_agent": self.nav_user_agent,
                 "languages": list(self.languages),
-                "runOnInsecureOrigins": self.runOnInsecureOrigins,
+                "runOnInsecureOrigins": self.run_on_insecure_origins,
             }
         )
         # defined options constant
