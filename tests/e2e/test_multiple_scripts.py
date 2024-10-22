@@ -97,7 +97,7 @@ def test_multiple_scripts(multiple_configs: MultipleScriptConfig):
                 assert value == "True"
         except AssertionError:
             page.screenshot(
-                path=f"tests/screenshots/{multiple_configs.name}_sync.png",
+                path=f"tests/e2e/screenshots/{multiple_configs.name}_sync.png",
                 full_page=True,
             )
             raise AssertionError(f"Test failed: {key} is {value}")
@@ -122,7 +122,7 @@ async def test_multiple_scripts(multiple_configs: MultipleScriptConfig):
                 assert value == "True"
         except AssertionError:
             await page.screenshot(
-                path=f"tests/screenshots/{multiple_configs.name}_async.png",
+                path=f"tests/e2e/screenshots/{multiple_configs.name}_async.png",
                 full_page=True,
             )
             raise AssertionError(f"Test failed: {key} is {value}")
