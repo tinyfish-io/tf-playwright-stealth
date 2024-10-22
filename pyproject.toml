@@ -4,8 +4,10 @@ packages = [
     { include = "playwright_stealth" },
 ]
 version = "1.0.0"
-description = "Makes agentql stealthy like a ninja!"
-authors = ["TinyGambe <gambe@tinyfish.io>"]
+description = "Makes playwright stealthy like a ninja!"
+authors = []
+homepage = "https://www.agentql.com/"
+repository = "https://github.com/tinyfish-io/tf-playwright-stealth"
 license = "MIT"
 readme = "README.md"
 
