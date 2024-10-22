@@ -3,9 +3,9 @@ from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 
 
-@pytest.mark.skip(
-    "This test is meant to be ran manually, wrapped under a pytest test so it is not automatically ran."
-)
+# @pytest.mark.skip(
+#     "This test is meant to be ran manually, wrapped under a pytest test so it is not automatically ran."
+# )
 def test_demo_with_stealth():
     """This test demonstrates how to use playwright-stealth with playwright"""
 
@@ -25,10 +25,10 @@ def test_demo_with_stealth():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            executable_path=executablePath,
+            # executable_path=executablePath,
             args=args,
             ignore_default_args=ignoreDefaultArgs,
-            headless=headless,
+            headless=True,
         )
         page = browser.new_page()
         stealth_sync(page)
@@ -39,6 +39,8 @@ def test_demo_with_stealth():
                         return window.navigator.webdriver
                     }"""
         )
+
+        print("HI")
 
         # return None
         print(f"window navigator webdriver value: {webdriver_flag}")

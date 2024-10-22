@@ -8,6 +8,8 @@ def from_file(name) -> str:
     js_folder_path = os.path.join(project_root, "js")
     file_path = os.path.join(js_folder_path, name)
 
+    print(f"Reading script from {file_path}")
+
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File {file_path} not found.")
 

@@ -31,7 +31,7 @@ SCRIPTS: Dict[str, str] = {
     "webgl_vendor": from_file("webgl.vendor.js"),
 }
 
-
+# hi
 @dataclass
 class StealthConfig:
     """
