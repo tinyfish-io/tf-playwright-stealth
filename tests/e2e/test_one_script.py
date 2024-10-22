@@ -38,7 +38,6 @@ def individual_config() -> ScriptConfig:
     return chromeAppConfig
 
 
-@pytest.mark.parametrize("individual_config", individual_config, ids=get_test_id)
 def test_individual_script_sync(
     individual_config: ScriptConfig,
 ):
@@ -56,7 +55,7 @@ def test_individual_script_sync(
                 assert value == "True"
         except AssertionError:
             page.screenshot(
-                path=f"tests/screenshots/{individual_config.name}_sync.png",
+                path=f"tests/e2e/screenshots/{individual_config.name}_sync.png",
                 full_page=True,
             )
             raise AssertionError(f"Test failed: {key} is {value}")
@@ -66,7 +65,6 @@ def test_individual_script_sync(
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("individual_config", individual_config, ids=get_test_id)
 async def test_individual_script_async(individual_config: ScriptConfig):
     """This test runs a single script"""
     async with async_playwright() as p:
@@ -82,7 +80,7 @@ async def test_individual_script_async(individual_config: ScriptConfig):
                 assert value == "True"
         except AssertionError:
             await page.screenshot(
-                path=f"tests/screenshots/{individual_config.name}_async.png",
+                path=f"tests/e2e/screenshots/{individual_config.name}_async.png",
                 full_page=True,
             )
             raise AssertionError(f"Test failed: {key} is {value}")

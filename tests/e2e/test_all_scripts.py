@@ -68,7 +68,9 @@ def test_all_scripts_sync(config: ScriptConfig):
             for key, value in response.items():
                 assert value == "True"
         except AssertionError:
-            page.screenshot(path=f"tests/screenshots/{config.name}.png", full_page=True)
+            page.screenshot(
+                path=f"tests/e2e/screenshots/{config.name}.png", full_page=True
+            )
             raise AssertionError(f"Test failed: {key} is {value}")
         finally:
             page.close()
@@ -92,7 +94,7 @@ async def test_all_scripts_async(config: ScriptConfig):
                 assert value == "True"
         except AssertionError:
             await page.screenshot(
-                path=f"tests/screenshots/{config.name}.png", full_page=True
+                path=f"tests/e2e/screenshots/{config.name}.png", full_page=True
             )
             raise AssertionError(f"Test failed: {key} is {value}")
         finally:
