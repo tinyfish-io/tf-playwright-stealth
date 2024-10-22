@@ -103,7 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-.vscode/
-
 tests/e2e/screenshots
 .DS_Store
