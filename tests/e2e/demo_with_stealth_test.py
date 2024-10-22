@@ -3,7 +3,9 @@ from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
 
 
-@pytest.mark.skip
+@pytest.mark.skip(
+    "This test is meant to be ran manually, wrapped under a pytest test so it is not automatically ran."
+)
 def test_demo_with_stealth():
     """This test demonstrates how to use playwright-stealth with playwright"""
 

@@ -105,6 +105,5 @@ venv.bak/
 
 .vscode/
 
-tests/screenshots
-tests/.DS_Store
+tests/e2e/screenshots
 .DS_Store

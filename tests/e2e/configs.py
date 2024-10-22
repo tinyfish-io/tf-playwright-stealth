@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .utils import from_file
+from tests.utils import from_file
 
 
 class ScriptConfig(BaseModel):
@@ -111,6 +111,7 @@ chromeRuntimeConfig = ScriptConfig(
     url="https://bot.sannysoft.com/",
 )
 
+# The following scripts with 'null' query values are currently broken or needs a better testing strategy
 generateMagicArraysConfig = ScriptConfig(
     name="generate_magic_arrays_test",
     script=from_file("generate.magic.arrays.js"),
