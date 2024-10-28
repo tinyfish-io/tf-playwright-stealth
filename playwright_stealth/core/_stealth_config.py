@@ -2,6 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Dict, Tuple, Optional
 import os
+from playwright_stealth.properties._properties import Properties
 
 
 def from_file(name) -> str:
@@ -77,22 +78,13 @@ class StealthConfig:
     languages: Tuple[str] = ("en-US", "en")
     run_on_insecure_origins: Optional[bool] = None
 
-    @property
-    def enabled_scripts(self):
+    def enabled_scripts(self, properties: Properties):
         """
         Generate the scripts to be executed.
         """
-        opts = json.dumps(
-            {
-                "webgl_vendor": self.vendor,
-                "webgl_renderer": self.renderer,
-                "navigator_vendor": self.nav_vendor,
-                "navigator_platform": self.nav_platform,
-                "navigator_user_agent": self.nav_user_agent,
-                "languages": list(self.languages),
-                "runOnInsecureOrigins": self.run_on_insecure_origins,
-            }
-        )
+
+        opts = json.dumps(properties.as_dict())
+
         # defined options constant
         yield f"const opts = {opts}"
         # init utils and generate_magic_arrays helper
