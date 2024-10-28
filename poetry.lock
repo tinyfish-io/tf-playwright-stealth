@@ -263,6 +263,16 @@ files = [
 test = ["pytest (>=6)"]
 
 [[package]]
+name = "fake-http-header"
+version = "0.3.5"
+description = "Generates random request fields for a http request header"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "fake_http_header-0.3.5-py3-none-any.whl", hash = "sha256:cd05f4bebf1b7e38b5f5c03d7fb820c0c17e87d9614fbee0afa39c32c7a2ad3c"},
+]
+
+[[package]]
 name = "greenlet"
 version = "3.0.3"
 description = "Lightweight in-process concurrent programming"
@@ -894,4 +904,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "888e39df61b703b46c1b4ead1d2f6aadf9005fc18b47a4125dc55a12d02089d3"
+content-hash = "293c5780bf7d4ace4091db8f1147d54a0ee9bddeec109d002b4b2afb9c2ced8f"
