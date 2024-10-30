@@ -75,7 +75,7 @@ class StealthConfig:
     nav_vendor: str = "Google Inc."
     nav_user_agent: str = None
     nav_platform: str = None
-    languages: Tuple[str] = ("en-US", "en")
+    languages: Tuple[str, str] = ("en-US", "en")
     run_on_insecure_origins: Optional[bool] = None
 
     def enabled_scripts(self, properties: Properties):

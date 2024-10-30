@@ -1,3 +1,4 @@
+from typing import List
 from pydantic import BaseModel
 
 from tests.utils import from_file
@@ -27,7 +28,7 @@ class ScriptConfig(BaseModel):
 
 class MultipleScriptConfig(BaseModel):
     name: str
-    script: list[str]
+    script: List[str]
     query: str
     url: str
 

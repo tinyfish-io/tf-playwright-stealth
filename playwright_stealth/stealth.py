@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from typing import Union
 from playwright.async_api import Page as AsyncPage
 from playwright.sync_api import Page as SyncPage
 from playwright_stealth.core._stealth_config import StealthConfig
@@ -16,7 +17,7 @@ def combine_scripts(properties: Properties, config: StealthConfig):
     return "\n".join(scripts)
 
 
-def generate_stealth_headers(properties: Properties, page: AsyncPage | SyncPage):
+def generate_stealth_headers(properties: Properties, page: Union[AsyncPage, SyncPage]):
     """Generates the stealth headers for the page by replacing the original headers with the spoofed ones for every request."""
     page.route(
         "**/*", lambda route: route.continue_(headers=properties.as_dict()["header"])

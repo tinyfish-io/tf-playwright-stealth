@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass
@@ -18,7 +19,7 @@ class NavigatorProperties:
     brands: list[dict]
     mobile: bool
 
-    def __init__(self, brands: list[dict], dnt: str, **kwargs):
+    def __init__(self, brands: List[dict], dnt: str, **kwargs):
         self.userAgent = kwargs["User-Agent"]
 
         # Shared properties
@@ -53,7 +54,7 @@ class NavigatorProperties:
 
         return "en-US"
 
-    def _generate_languages(self, accept_language: str) -> list[str]:
+    def _generate_languages(self, accept_language: str) -> List[str]:
         """Generates the languages based on the accept language."""
 
         languages_with_quality = accept_language.split(",")

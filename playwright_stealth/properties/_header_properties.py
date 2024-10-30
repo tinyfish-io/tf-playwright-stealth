@@ -1,5 +1,5 @@
-import random
 from dataclasses import dataclass
+from typing import List
 
 
 @dataclass
@@ -23,7 +23,7 @@ class HeaderProperties:
 
     def __init__(
         self,
-        brands: list[dict],
+        brands: List[dict],
         dnt: str,
         **kwargs,
     ):
@@ -59,7 +59,7 @@ class HeaderProperties:
         else:
             return "Unknown"
 
-    def _generate_sec_ch_ua(self, brands: list[dict]) -> str:
+    def _generate_sec_ch_ua(self, brands: List[dict]) -> str:
         """Generates the Sec_Ch_Ua based brands generated"""
         merged_brands = "".join(
             [f'"{brand["brand"]}";v="{brand["version"]}",' for brand in brands]
