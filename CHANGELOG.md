@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.2
+- Fix compatibility issues with Python 3.8 and above
+
 ## 1.0.1
 - Fix compatibility issues with Python 3.9 and above
 
