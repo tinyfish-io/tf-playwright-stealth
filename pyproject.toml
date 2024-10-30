@@ -3,7 +3,7 @@ name = "tf-playwright-stealth"
 packages = [
     { include = "playwright_stealth" },
 ]
-version = "1.0.0"
+version = "1.0.1"
 description = "Makes playwright stealthy like a ninja!"
 authors = []
 homepage = "https://www.agentql.com/"

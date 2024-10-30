@@ -1,6 +1,7 @@
 import pytest
 import agentql
 import logging
+from typing import List
 from playwright.sync_api import sync_playwright, Page as SyncPage
 from playwright.async_api import async_playwright, Page as AsyncPage
 from .configs import (
@@ -26,7 +27,7 @@ from .configs import (
 log = logging.getLogger(__name__)
 
 
-def extract_query_lines(query_str) -> list[str]:
+def extract_query_lines(query_str) -> List[str]:
     """This function is used to extract the query lines from the query string"""
     lines = query_str.strip().splitlines()
     return [
