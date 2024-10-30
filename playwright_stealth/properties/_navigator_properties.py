@@ -9,14 +9,14 @@ class NavigatorProperties:
     userAgent: str
     platform: str
     language: str
-    languages: list[str]
+    languages: List[str]
     appVersion: str
     vendor: str
     deviceMemory: int
     hardwareConcurrency: int
     maxTouchPoints: int
     doNotTrack: str
-    brands: list[dict]
+    brands: List[dict]
     mobile: bool
 
     def __init__(self, brands: List[dict], dnt: str, **kwargs):
