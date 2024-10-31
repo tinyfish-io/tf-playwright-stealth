@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Dict, Tuple, Optional
 import os
-from playwright_stealth.properties._properties import Properties
+from playwright_stealth.properties import Properties
 
 
 def from_file(name) -> str:

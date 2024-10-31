@@ -19,18 +19,13 @@ class WebGlProperties:
     ]
 
     def __init__(self):
-        self.vendor = self._generate_vendor()
-        self.renderer = self._generate_renderer()
+        webgl_prop = self._generate_webgl_prop()
+        self.vendor = webgl_prop["vendor"]
+        self.renderer = webgl_prop["renderer"]
+
+    def _generate_webgl_prop(self):
+        """Generates a WebGL property containing both vendor and renderer."""
+        return random.choice(self.webgl_properties)
 
     def as_dict(self):
         return self.__dict__
-
-    def _generate_vendor(self) -> str:
-        """Generates the vendor based on the user agent."""
-
-        return random.choice(self.webgl_properties)["vendor"]
-
-    def _generate_renderer(self) -> str:
-        """Generates the renderer based on the user agent."""
-
-        return random.choice(self.webgl_properties)["renderer"]
