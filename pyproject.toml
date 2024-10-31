@@ -23,7 +23,6 @@ pytest = "^8.3.3"
 pylint = "^3.2.7"
 pytest-mockito = "^0.0.4"
 black = "*"
-isort = "^5.13.2"
 
 [build-system]
 requires = ["poetry-core"]
