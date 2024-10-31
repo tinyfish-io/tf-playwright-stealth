@@ -39,9 +39,9 @@ class HeaderProperties:
 
         # # Self generated headers
         self.sec_ch_ua = self._generate_sec_ch_ua(brands)
+        self.sec_ch_ua_mobile = self._generate_sec_ch_ua_mobile()
         self.sec_ch_ua_platform = self._generate_sec_ch_ua_platform()
-        self.sec_ch_ua_form_factors = self.generate_sec_ch_ua_form_factors()
-        self.sec_ch_ua_mobile = self.generate_sec_ch_ua_mobile()
+        self.sec_ch_ua_form_factors = self._generate_sec_ch_ua_form_factors()
 
     def _generate_sec_ch_ua_platform(self) -> str:
         """Generates the Sec_Ch_Ua_Platform based on the user agent platform."""
@@ -66,19 +66,18 @@ class HeaderProperties:
         )
         return merged_brands
 
-    def as_dict(self) -> dict:
-
-        # Convert all keys to kebab case and return a new dictionary
-        return {
-            key.replace("_", "-").lower(): value for key, value in self.__dict__.items()
-        }
-
-    def generate_sec_ch_ua_form_factors(self) -> str:
+    def _generate_sec_ch_ua_form_factors(self) -> str:
         """Generates the Sec_Ch_Ua_Form_Factors based on the user agent."""
 
         return "desktop"
 
-    def generate_sec_ch_ua_mobile(self) -> str:
+    def _generate_sec_ch_ua_mobile(self) -> str:
         """Generates the Sec_Ch_Ua_Mobile based on the user agent."""
 
         return "?0"
+
+    def as_dict(self) -> dict:
+        # Convert all keys to kebab case and return a new dictionary
+        return {
+            key.replace("_", "-").lower(): value for key, value in self.__dict__.items()
+        }
