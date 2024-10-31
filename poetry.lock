@@ -568,6 +568,7 @@ files = [
     {file = "mypy_extensions-1.0.0.tar.gz", hash = "sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782"},
 ]
 
+[[package]]
 name = "packaging"
 version = "24.1"
 description = "Core utilities for Python packages"
@@ -1011,4 +1012,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "8d3106d47758a8e8d8bfb04bde6f5d601495bef2cbb052ef4110ea195a445fcb"
+content-hash = "aada6a3fa6c15bd19af8cf1e4da39a48d4ff7ea71fd64f1ee16e6cd6f4e03029"
