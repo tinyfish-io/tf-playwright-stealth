@@ -568,7 +568,6 @@ files = [
     {file = "mypy_extensions-1.0.0.tar.gz", hash = "sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782"},
 ]
 
-[[package]]
 name = "packaging"
 version = "24.1"
 description = "Core utilities for Python packages"

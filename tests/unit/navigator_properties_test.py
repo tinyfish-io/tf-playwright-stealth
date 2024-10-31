@@ -76,7 +76,6 @@ def test_generate_vendor(navigator_properties):
     ua_safari = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1.15"
     assert navigator_properties._generate_vendor(ua_chrome) == "Google Inc."
     assert navigator_properties._generate_vendor(ua_firefox) == ""
-    # Since the default in your code is "Google Inc.", Safari will return "Google Inc."
     assert navigator_properties._generate_vendor(ua_safari) == "Google Inc."
 
 
