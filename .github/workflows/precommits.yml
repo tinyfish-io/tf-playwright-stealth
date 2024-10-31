@@ -1,0 +1,55 @@
+name: Pre-commit checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main, release]
+
+env:
+  POETRY_VERSION: "1.8.3"
+
+jobs:
+  python-pre-commit:
+    name: Pre-commit checks
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        run: |
+          pipx install poetry==${{ env.POETRY_VERSION }}
+
+      - name: Check Poetry File
+        run: |
+          poetry check
+
+      - name: Install Package Dependencies
+        run: |
+          poetry env use $pythonLocation/bin/python
+          poetry install -n
+
+      - name: Run unit tests
+        run: |
+          poetry run pytest tests/unit
+
+      - name: Lint check
+        run: |
+          poetry run pylint --disable=R,C playwright_stealth
+
+      - name: Code style check
+        run: |
+          poetry run black . --check --diff
+
+      - name: Imports sort check
+        uses: isort/isort-action@master
