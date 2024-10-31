@@ -50,6 +50,3 @@ jobs:
       - name: Code style check
         run: |
           poetry run black playwright_stealth --check --diff
-
-      - name: Imports sort check
-        uses: isort/isort-action@master
