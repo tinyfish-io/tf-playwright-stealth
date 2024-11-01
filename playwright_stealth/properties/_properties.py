@@ -25,9 +25,7 @@ class Properties:
         dnt = self._generate_dnt()
 
         # Generate properties
-        self.header = HeaderProperties(
-            brands=brands, dnt=dnt, **spoofed_headers.as_header_dict()
-        )
+        self.header = HeaderProperties(brands=brands, dnt=dnt, **spoofed_headers.as_header_dict())
         self.navigator = NavigatorProperties(
             brands=brands, dnt=dnt, **spoofed_headers.as_header_dict()
         )
@@ -61,7 +59,9 @@ class Properties:
 
         escaped_chars = [" ", " ", ";"]
 
-        greasey_brand = f"{escaped_chars[order[0]]}Not{escaped_chars[order[1]]}A{escaped_chars[order[2]]}Brand"
+        greasey_brand = (
+            f"{escaped_chars[order[0]]}Not{escaped_chars[order[1]]}A{escaped_chars[order[2]]}Brand"
+        )
 
         greased_brand_version_list = [{}, {}, {}]
 

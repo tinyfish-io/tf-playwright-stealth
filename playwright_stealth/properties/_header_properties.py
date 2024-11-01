@@ -61,9 +61,7 @@ class HeaderProperties:
 
     def _generate_sec_ch_ua(self, brands: List[dict]) -> str:
         """Generates the Sec_Ch_Ua based brands generated"""
-        merged_brands = "".join(
-            [f'"{brand["brand"]}";v="{brand["version"]}",' for brand in brands]
-        )
+        merged_brands = "".join([f'"{brand["brand"]}";v="{brand["version"]}",' for brand in brands])
         return merged_brands
 
     def _generate_sec_ch_ua_form_factors(self) -> str:
@@ -78,6 +76,4 @@ class HeaderProperties:
 
     def as_dict(self) -> dict:
         # Convert all keys to kebab case and return a new dictionary
-        return {
-            key.replace("_", "-").lower(): value for key, value in self.__dict__.items()
-        }
+        return {key.replace("_", "-").lower(): value for key, value in self.__dict__.items()}

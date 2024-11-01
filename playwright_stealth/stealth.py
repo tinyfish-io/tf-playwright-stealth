@@ -19,9 +19,7 @@ def combine_scripts(properties: Properties, config: StealthConfig):
 
 def generate_stealth_headers(properties: Properties, page: Union[AsyncPage, SyncPage]):
     """Generates the stealth headers for the page by replacing the original headers with the spoofed ones for every request."""
-    page.route(
-        "**/*", lambda route: route.continue_(headers=properties.as_dict()["header"])
-    )
+    page.route("**/*", lambda route: route.continue_(headers=properties.as_dict()["header"]))
 
 
 def stealth_sync(page: SyncPage, config: StealthConfig = None):

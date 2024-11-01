@@ -33,9 +33,7 @@ class NavigatorProperties:
         self.appVersion = self._generate_app_version(kwargs["User-Agent"])
         self.vendor = self._generate_vendor(kwargs["User-Agent"])
         self.deviceMemory = self._generate_device_memory()
-        self.hardwareConcurrency = self._generate_hardware_concurrency(
-            self.deviceMemory
-        )
+        self.hardwareConcurrency = self._generate_hardware_concurrency(self.deviceMemory)
         self.maxTouchPoints = self._generate_max_touch_points()
         self.mobile = self._generate_mobile()
 
