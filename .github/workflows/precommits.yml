@@ -3,7 +3,6 @@ name: Pre-commit checks
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [main, release]
 
 env:
   POETRY_VERSION: "1.8.3"
