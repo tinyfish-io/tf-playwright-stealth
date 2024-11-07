@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.3
+- Fix when custom headers are not properly applied for async version 
+
 ## 1.0.2
 - Fix compatibility issues with Python 3.8 and above
 

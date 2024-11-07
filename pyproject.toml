@@ -1,9 +1,7 @@
 [tool.poetry]
 name = "tf-playwright-stealth"
-packages = [
-    { include = "playwright_stealth" },
-]
-version = "1.0.2"
+packages = [{ include = "playwright_stealth" }]
+version = "1.0.3"
 description = "Makes playwright stealthy like a ninja!"
 authors = []
 homepage = "https://www.agentql.com/"
