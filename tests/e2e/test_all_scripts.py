@@ -3,6 +3,7 @@ import agentql
 import logging
 from playwright.sync_api import sync_playwright, Page as SyncPage
 from playwright.async_api import async_playwright, Page as AsyncPage
+from playwright_stealth import stealth_sync, stealth_async
 from .configs import (
     ScriptConfig,
     chromeAppConfig,
@@ -61,6 +62,7 @@ def test_all_scripts_sync(config: ScriptConfig):
         page: SyncPage = agentql.wrap(browser.new_page())
 
         page.add_init_script(config.script)
+        stealth_sync(page)
         page.goto(config.url)
         response = page.query_data(config.query)
 
@@ -86,6 +88,7 @@ async def test_all_scripts_async(config: ScriptConfig):
         page: AsyncPage = await agentql.wrap_async(browser.new_page())
 
         await page.add_init_script(config.script)
+        await stealth_async(page)
         await page.goto(config.url)
         response = await page.query_data(config.query)
 
