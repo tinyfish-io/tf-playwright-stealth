@@ -120,7 +120,6 @@ async def test_all_scripts_async(config: ScriptConfig):
         )
 
         await page.add_init_script(combined_script)
-        await stealth_async(page)
         await page.goto(config.url)
         response = await page.query_data(config.query)
 
