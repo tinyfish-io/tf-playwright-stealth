@@ -3,7 +3,6 @@ import agentql
 import logging
 from playwright.sync_api import sync_playwright, Page as SyncPage
 from playwright.async_api import async_playwright, Page as AsyncPage
-from playwright_stealth import stealth_sync, stealth_async
 from tests.utils import from_file
 import json
 from playwright_stealth.properties import Properties
@@ -55,14 +54,6 @@ test_configs = [
 def get_test_id(config: ScriptConfig) -> str:
     """This function is used to generate test ids for pytest"""
     return config.name
-
-
-def configs(page: SyncPage):
-
-    utils_script = from_file("utils.js")
-    magic_arrays_script = from_file("generate.magic.arrays.js")
-    page.add_init_script(utils_script)
-    page.add_init_script(magic_arrays_script)
 
 
 @pytest.mark.parametrize("config", test_configs, ids=get_test_id)
