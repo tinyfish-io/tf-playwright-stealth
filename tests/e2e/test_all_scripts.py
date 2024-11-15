@@ -3,6 +3,9 @@ import agentql
 import logging
 from playwright.sync_api import sync_playwright, Page as SyncPage
 from playwright.async_api import async_playwright, Page as AsyncPage
+from tests.utils import from_file
+import json
+from playwright_stealth.properties import Properties
 from .configs import (
     ScriptConfig,
     chromeAppConfig,
@@ -60,7 +63,18 @@ def test_all_scripts_sync(config: ScriptConfig):
         browser = p.chromium.launch(headless=True)
         page: SyncPage = agentql.wrap(browser.new_page())
 
-        page.add_init_script(config.script)
+        utils_script = from_file("utils.js")
+        magic_arrays_script = from_file("generate.magic.arrays.js")
+
+        properties = Properties()
+        opts = json.dumps(properties.as_dict())
+        opts = f"const opts = {opts}"
+
+        combined_script = (
+            opts + "\n" + utils_script + "\n" + magic_arrays_script + "\n" + config.script
+        )
+
+        page.add_init_script(combined_script)
         page.goto(config.url)
         response = page.query_data(config.query)
 
@@ -85,7 +99,18 @@ async def test_all_scripts_async(config: ScriptConfig):
         browser = await p.chromium.launch(headless=True)
         page: AsyncPage = await agentql.wrap_async(browser.new_page())
 
-        await page.add_init_script(config.script)
+        utils_script = from_file("utils.js")
+        magic_arrays_script = from_file("generate.magic.arrays.js")
+
+        properties = Properties()
+        opts = json.dumps(properties.as_dict())
+        opts = f"const opts = {opts}"
+
+        combined_script = (
+            opts + "\n" + utils_script + "\n" + magic_arrays_script + "\n" + config.script
+        )
+
+        await page.add_init_script(combined_script)
         await page.goto(config.url)
         response = await page.query_data(config.query)
 
