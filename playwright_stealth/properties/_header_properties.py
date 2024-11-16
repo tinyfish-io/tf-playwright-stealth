@@ -25,6 +25,7 @@ class HeaderProperties:
         self,
         brands: List[dict],
         dnt: str,
+        client_hint_headers_enabled: True,
         **kwargs,
     ):
         # Passed by library
@@ -38,10 +39,11 @@ class HeaderProperties:
         self.dnt = dnt
 
         # # Self generated headers
-        self.sec_ch_ua = self._generate_sec_ch_ua(brands)
-        self.sec_ch_ua_mobile = self._generate_sec_ch_ua_mobile()
-        self.sec_ch_ua_platform = self._generate_sec_ch_ua_platform()
-        self.sec_ch_ua_form_factors = self._generate_sec_ch_ua_form_factors()
+        if client_hint_headers_enabled:
+            self.sec_ch_ua = self._generate_sec_ch_ua(brands)
+            self.sec_ch_ua_mobile = self._generate_sec_ch_ua_mobile()
+            self.sec_ch_ua_platform = self._generate_sec_ch_ua_platform()
+            self.sec_ch_ua_form_factors = self._generate_sec_ch_ua_form_factors()
 
     def _generate_sec_ch_ua_platform(self) -> str:
         """Generates the Sec_Ch_Ua_Platform based on the user agent platform."""

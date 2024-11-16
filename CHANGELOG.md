@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.0
+- Add ability to have custom headers depending on the browser type. When set, browser-specific headers will be used instead of the default headers.
+```
+await stealth_async(page, config=StealthConfig(browser_type=BrowserType.FIREFOX))
+```
+
 ## 1.0.3
 - Fix when custom headers are not properly applied for async version 
 

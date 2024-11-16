@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import Dict, Tuple, Optional
 import os
-from playwright_stealth.properties import Properties
+from playwright_stealth.properties import Properties, BrowserType
 
 
 def from_file(name) -> str:
@@ -68,6 +68,7 @@ class StealthConfig:
     navigator_user_agent: bool = True
     navigator_vendor: bool = True
     outerdimensions: bool = True
+    browser_type: BrowserType = BrowserType.CHROME
 
     # options
     vendor: str = "Intel Inc."
