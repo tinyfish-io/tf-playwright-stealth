@@ -6,6 +6,13 @@ from ._header_properties import HeaderProperties
 from ._navigator_properties import NavigatorProperties
 from ._viewport_properties import ViewportProperties
 from ._webgl_properties import WebGlProperties
+from enum import Enum
+
+
+class BrowserType(Enum):
+    CHROME = "chrome"
+    FIREFOX = "firefox"
+    SAFARI = "safari"
 
 
 @dataclass
@@ -17,15 +24,21 @@ class Properties:
     webgl: WebGlProperties
     runOnInsecureOrigins: bool
 
-    def __init__(self):
-        spoofed_headers = FakeHttpHeader(domain_code="com", browser="chrome")
+    def __init__(self, browser_type: BrowserType = BrowserType.CHROME):
+        spoofed_headers = FakeHttpHeader(domain_code="com", browser=browser_type.value)
 
         # Generate shared properties
-        brands = self._generate_brands(spoofed_headers.user_agent)
+        brands = self._generate_brands(spoofed_headers.user_agent, browser=browser_type.value)
         dnt = self._generate_dnt()
 
         # Generate properties
-        self.header = HeaderProperties(brands=brands, dnt=dnt, **spoofed_headers.as_header_dict())
+        self.header = HeaderProperties(
+            brands=brands,
+            dnt=dnt,
+            client_hint_headers_enabled=browser_type
+            is not BrowserType.FIREFOX,  # Firefox does not support client hints
+            **spoofed_headers.as_header_dict(),
+        )
         self.navigator = NavigatorProperties(
             brands=brands, dnt=dnt, **spoofed_headers.as_header_dict()
         )
@@ -36,13 +49,23 @@ class Properties:
     def _generate_brands(self, user_agent: str, browser: str = "chrome") -> str:
         """Generates the brands based on the referer."""
 
-        regex_patterns = {
-            "chrome": r"Chrome/(\d+)",
-            "firefox": r"Firefox/(\d+)",
-            "safari": r"Version/(\d+)",
+        configs = {
+            "chrome": {
+                "regex": r"Chrome/(\d+)",
+                "brands": ["Chromium", "Google Chrome"],
+            },
+            "firefox": {
+                "regex": r"Firefox/(\d+)",
+                "brands": ["Firefox", "Firefox"],
+            },
+            "safari": {
+                "regex": r"Safari/(\d+)",
+                "brands": ["Safari", "Apple WebKit"],
+            },
         }
 
-        pattern = regex_patterns[browser]
+        config = configs[browser]
+        pattern = config["regex"]
 
         browser_with_version = re.search(pattern, user_agent)
         version = browser_with_version.group(1)
@@ -71,12 +94,12 @@ class Properties:
         }
 
         greased_brand_version_list[order[1]] = {
-            "brand": "Chromium",
+            "brand": config["brands"][0],
             "version": seed,
         }
 
         greased_brand_version_list[order[2]] = {
-            "brand": "Google Chrome",
+            "brand": config["brands"][1],
             "version": seed,
         }
 
