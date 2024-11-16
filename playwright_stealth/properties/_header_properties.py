@@ -25,7 +25,7 @@ class HeaderProperties:
         self,
         brands: List[dict],
         dnt: str,
-        client_hint_headers_enabled: True,
+        client_hint_headers_enabled: bool = True,
         **kwargs,
     ):
         # Passed by library
