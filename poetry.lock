@@ -2,13 +2,13 @@
 
 [[package]]
 name = "agentql"
-version = "1.4.0"
+version = "1.7.0"
 description = "Tiny Fish AgentQL Python Client"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "agentql-1.4.0-py3-none-any.whl", hash = "sha256:e44d056e9d4141af45832ff39902e27b189383c509bb737cc1341bb112a5edf2"},
-    {file = "agentql-1.4.0.tar.gz", hash = "sha256:cd2ad18dac22f1c416dc715ea9ce3b211ab71805ec6b43ef23aa47e9ab277fd1"},
+    {file = "agentql-1.7.0-py3-none-any.whl", hash = "sha256:87891f438591b6f6491c65ba5083caaa1727af31188de3cafa498030017a847b"},
+    {file = "agentql-1.7.0.tar.gz", hash = "sha256:8f889e58e327d714693282b17b1e9eb2371b319ce66c498bbabb031e36386790"},
 ]
 
 [package.dependencies]
