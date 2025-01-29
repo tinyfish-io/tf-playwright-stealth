@@ -9,9 +9,8 @@ def combine_scripts(properties: Properties, config: StealthConfig):
     """Combines the scripts for the page based on the properties and config."""
 
     scripts = []
-    config = StealthConfig() if config is None else config
 
-    for script in config.enabled_scripts(properties):
+    for script in (config or StealthConfig()).enabled_scripts:
         scripts.append(script)
     return "\n".join(scripts)
 
