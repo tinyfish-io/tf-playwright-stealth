@@ -2,13 +2,13 @@
 
 [[package]]
 name = "agentql"
-version = "1.4.0"
+version = "1.7.0"
 description = "Tiny Fish AgentQL Python Client"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "agentql-1.4.0-py3-none-any.whl", hash = "sha256:e44d056e9d4141af45832ff39902e27b189383c509bb737cc1341bb112a5edf2"},
-    {file = "agentql-1.4.0.tar.gz", hash = "sha256:cd2ad18dac22f1c416dc715ea9ce3b211ab71805ec6b43ef23aa47e9ab277fd1"},
+    {file = "agentql-1.7.0-py3-none-any.whl", hash = "sha256:87891f438591b6f6491c65ba5083caaa1727af31188de3cafa498030017a847b"},
+    {file = "agentql-1.7.0.tar.gz", hash = "sha256:8f889e58e327d714693282b17b1e9eb2371b319ce66c498bbabb031e36386790"},
 ]
 
 [package.dependencies]
@@ -828,13 +828,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pytest"
-version = "8.3.3"
+version = "8.3.4"
 description = "pytest: simple powerful testing with Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pytest-8.3.3-py3-none-any.whl", hash = "sha256:a6853c7375b2663155079443d2e45de913a911a11d669df02a50814944db57b2"},
-    {file = "pytest-8.3.3.tar.gz", hash = "sha256:70b98107bd648308a7952b06e6ca9a50bc660be218d53c257cc1fc94fda10181"},
+    {file = "pytest-8.3.4-py3-none-any.whl", hash = "sha256:50e16d954148559c9a74109af1eaf0c945ba2d8f30f0a3d3335edde19788b6f6"},
+    {file = "pytest-8.3.4.tar.gz", hash = "sha256:965370d062bce11e73868e0335abac31b4d3de0e82f4007408d242b4f8610761"},
 ]
 
 [package.dependencies]
