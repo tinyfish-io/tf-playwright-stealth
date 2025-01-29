@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.1
+- Fixed a bug when custom config was not respected (@mikebgrep #31)
+
 ## 1.1.0
 - Add ability to have custom headers depending on the browser type. When set, browser-specific headers will be used instead of the default headers.
 ```
