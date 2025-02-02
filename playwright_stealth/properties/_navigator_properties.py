@@ -32,7 +32,7 @@ class NavigatorProperties:
         self.languages = self._generate_languages(kwargs["Accept-language"])
         self.appVersion = self._generate_app_version(kwargs["User-Agent"])
         self.vendor = self._generate_vendor(kwargs["User-Agent"])
-        self.deviceMemory = self._generate_device_memory()
+        self.deviceMemory = self._generate_device_memory(kwargs["User-Agent"])
         self.hardwareConcurrency = self._generate_hardware_concurrency(self.deviceMemory)
         self.maxTouchPoints = self._generate_max_touch_points()
         self.mobile = self._generate_mobile()
@@ -78,10 +78,10 @@ class NavigatorProperties:
 
         return "Google Inc."
 
-    def _generate_device_memory(self) -> int:
+    def _generate_device_memory(self, user_agent: str) -> int:
         """Generates the device memory."""
 
-        return 8
+        return 8 if "Chrome/" in user_agent else None
 
     def _generate_hardware_concurrency(self, device_memory: int) -> int:
         """Generates the hardware concurrency."""
