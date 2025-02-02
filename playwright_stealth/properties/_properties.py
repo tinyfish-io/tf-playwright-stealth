@@ -23,19 +23,20 @@ class Properties:
     viewport: ViewportProperties
     webgl: WebGlProperties
     runOnInsecureOrigins: bool
+    browser_type: BrowserType = BrowserType.FIREFOX
 
-    def __init__(self, browser_type: BrowserType = BrowserType.CHROME):
-        spoofed_headers = FakeHttpHeader(domain_code="com", browser=browser_type.value)
+    def __init__(self):
+        spoofed_headers = FakeHttpHeader(domain_code="com", browser=self.browser_type.value)
 
         # Generate shared properties
-        brands = self._generate_brands(spoofed_headers.user_agent, browser=browser_type.value)
+        brands = self._generate_brands(spoofed_headers.user_agent, browser=self.browser_type.value)
         dnt = self._generate_dnt()
 
         # Generate properties
         self.header = HeaderProperties(
             brands=brands,
             dnt=dnt,
-            client_hint_headers_enabled=browser_type
+            client_hint_headers_enabled=self.browser_type
             is not BrowserType.FIREFOX,  # Firefox does not support client hints
             **spoofed_headers.as_header_dict(),
         )

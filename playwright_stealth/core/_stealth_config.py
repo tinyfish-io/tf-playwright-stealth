@@ -25,6 +25,8 @@ SCRIPTS: Dict[str, str] = {
     "navigator_permissions": from_file("navigator.permissions.js"),
     "navigator_languages": from_file("navigator.languages.js"),
     "navigator_user_agent": from_file("navigator.userAgent.js"),
+    "navigator_product_sub": from_file("navigator.productSub.js"),
+    "navigator_os_cpu": from_file("navigator.osCpu.js"),
     "navigator_hardware_concurrency": from_file("navigator.hardwareConcurrency.js"),
     "outerdimensions": from_file("window.outerdimensions.js"),
     "utils": from_file("utils.js"),
@@ -67,8 +69,10 @@ class StealthConfig:
     navigator_plugins: bool = True
     navigator_user_agent: bool = True
     navigator_vendor: bool = True
+    navigator_product_sub: bool = True
+    navigator_os_cpu: bool = True
     outerdimensions: bool = True
-    browser_type: BrowserType = BrowserType.CHROME
+    browser_type: BrowserType = BrowserType.FIREFOX
 
     # options
     vendor: str = "Intel Inc."
@@ -114,6 +118,10 @@ class StealthConfig:
             yield SCRIPTS["navigator_user_agent"]
         if self.navigator_vendor:
             yield SCRIPTS["navigator_vendor"]
+        if self.navigator_product_sub:
+            yield SCRIPTS["navigator_product_sub"]
+        if self.navigator_os_cpu:
+            yield SCRIPTS["navigator_os_cpu"]
         if self.webdriver:
             yield SCRIPTS["webdriver"]
         if self.outerdimensions:
