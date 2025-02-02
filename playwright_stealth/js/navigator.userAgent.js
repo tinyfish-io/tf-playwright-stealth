@@ -7,6 +7,7 @@ const override = {
   hardwareConcurrency: opts.navigator.hardwareConcurrency,
   maxTouchPoints: opts.navigator.maxTouchPoints,
   appVersion: opts.navigator.appVersion,
+  productSub: opts.navigator.productSub,
   userAgentData: {
     brands: opts.navigator.brands,
     fullVersion: opts.navigator.userAgent,
@@ -62,4 +63,11 @@ utils.replaceGetterWithProxy(
   Object.getPrototypeOf(navigator),
   "appVersion",
   utils.makeHandler().getterValue(override.appVersion)
+);
+
+
+utils.replaceGetterWithProxy(
+  Object.getPrototypeOf(navigator),
+  "productSub",
+  utils.makeHandler().getterValue(override.productSub)
 );
