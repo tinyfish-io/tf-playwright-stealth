@@ -24,7 +24,7 @@ class Properties:
     webgl: WebGlProperties
     runOnInsecureOrigins: bool
 
-    def __init__(self, browser_type: BrowserType = BrowserType.FIREFOX):
+    def __init__(self, browser_type: BrowserType = BrowserType.CHROME):
         spoofed_headers = FakeHttpHeader(domain_code="com", browser=browser_type.value)
 
         # Generate shared properties
