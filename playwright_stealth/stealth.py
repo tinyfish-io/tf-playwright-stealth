@@ -27,7 +27,7 @@ async def generate_stealth_headers_async(properties: Properties, page: AsyncPage
 
 def stealth_sync(page: SyncPage, config: StealthConfig = None):
     """teaches synchronous playwright Page to be stealthy like a ninja!"""
-    properties = Properties()
+    properties = Properties(browser_type=config.browser_type if config else BrowserType.CHROME)
     combined_script = combine_scripts(properties, config)
     generate_stealth_headers_sync(properties, page)
 
