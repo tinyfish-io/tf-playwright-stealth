@@ -68,7 +68,7 @@ class StealthConfig:
     navigator_user_agent: bool = True
     navigator_vendor: bool = True
     outerdimensions: bool = True
-    browser_type: BrowserType = BrowserType.CHROME
+    browser_type: BrowserType = None
 
     # options
     vendor: str = "Intel Inc."
