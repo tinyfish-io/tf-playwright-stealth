@@ -27,7 +27,7 @@ def navigator_properties(fake_headers, brands):
 def test_initialization(navigator_properties, fake_headers, brands):
     """Test that NavigatorProperties initializes with correct attributes."""
     assert navigator_properties.userAgent == fake_headers["User-Agent"]
-    assert navigator_properties.platform in ["Macintosh", "Windows", "Linux"]
+    assert navigator_properties.platform in ["MacIntel", "Win64", "Linux x86_x64"]
     assert navigator_properties.language == "en-US"
     assert isinstance(navigator_properties.languages, list)
     assert (
