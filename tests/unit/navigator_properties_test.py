@@ -48,9 +48,9 @@ def test_generate_platform(navigator_properties):
     ua_mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
     ua_windows = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
     ua_linux = "Mozilla/5.0 (X11; Linux x86_64)"
-    assert navigator_properties._generate_platform(ua_mac) == "Macintosh"
-    assert navigator_properties._generate_platform(ua_windows) == "Windows"
-    assert navigator_properties._generate_platform(ua_linux) == "Linux"
+    assert navigator_properties._generate_platform(ua_mac) == "MacIntel"
+    assert navigator_properties._generate_platform(ua_windows) == "Win64"
+    assert navigator_properties._generate_platform(ua_linux) == "Linux x86_x64"
 
 
 def test_generate_languages(navigator_properties):
