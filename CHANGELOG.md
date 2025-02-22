@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.2
+- Fixed stealth support for Firefox (@mikebgrep #35)
+
 ## 1.1.1
 - Fixed a bug when custom config was not respected (@mikebgrep #31)
 
