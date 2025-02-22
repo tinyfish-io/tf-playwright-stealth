@@ -81,7 +81,7 @@ class NavigatorProperties:
     def _generate_device_memory(self, user_agent: str) -> int:
         """Generates the device memory."""
 
-        return 8 if "Chrome/" in user_agent else None
+        return None if "Firefox" in user_agent else 8
 
     def _generate_hardware_concurrency(self, device_memory: int) -> int:
         """Generates the hardware concurrency."""
@@ -100,7 +100,7 @@ class NavigatorProperties:
 
     def _generate_product_sub(self, user_agent: str) -> int:
         """Generate product sub depending on the Browser"""
-        return 20100101 if "Chrome/" not in user_agent else 20030107
+        return 20100101 if "Firefox" in user_agent else 20030107
 
     def as_dict(self) -> dict:
         return self.__dict__
