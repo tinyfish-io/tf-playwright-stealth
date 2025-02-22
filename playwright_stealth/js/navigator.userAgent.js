@@ -65,7 +65,6 @@ utils.replaceGetterWithProxy(
   utils.makeHandler().getterValue(override.appVersion)
 );
 
-
 utils.replaceGetterWithProxy(
   Object.getPrototypeOf(navigator),
   "productSub",
