@@ -32,20 +32,23 @@ class NavigatorProperties:
         self.languages = self._generate_languages(kwargs["Accept-language"])
         self.appVersion = self._generate_app_version(kwargs["User-Agent"])
         self.vendor = self._generate_vendor(kwargs["User-Agent"])
-        self.deviceMemory = self._generate_device_memory()
+        self.deviceMemory = self._generate_device_memory(kwargs["User-Agent"])
         self.hardwareConcurrency = self._generate_hardware_concurrency(self.deviceMemory)
         self.maxTouchPoints = self._generate_max_touch_points()
         self.mobile = self._generate_mobile()
+        self.productSub = self._generate_product_sub(kwargs["User-Agent"])
 
     def _generate_platform(self, user_agent: str) -> str:
         """Generates the platform based on the user agent."""
 
+        # Change regarding this article: \
+        # https://filipvitas.medium.com/how-to-set-user-agent-header-with-puppeteer-js-and-not-fail-28c7a02165da
         if "Macintosh" in user_agent:
-            return "Macintosh"
+            return "MacIntel"
         elif "Linux" in user_agent:
-            return "Linux"
+            return "Linux x86_x64"
         else:
-            return "Windows"
+            return "Win64"
 
     def _generate_language(self) -> str:
         """Generates the language based on the accept language."""
@@ -75,10 +78,10 @@ class NavigatorProperties:
 
         return "Google Inc."
 
-    def _generate_device_memory(self) -> int:
+    def _generate_device_memory(self, user_agent: str) -> int:
         """Generates the device memory."""
 
-        return 8
+        return None if "Firefox" in user_agent else 8
 
     def _generate_hardware_concurrency(self, device_memory: int) -> int:
         """Generates the hardware concurrency."""
@@ -94,6 +97,10 @@ class NavigatorProperties:
         """Generates the mobile flag."""
 
         return False
+
+    def _generate_product_sub(self, user_agent: str) -> int:
+        """Generate product sub depending on the Browser"""
+        return 20100101 if "Firefox" in user_agent else 20030107
 
     def as_dict(self) -> dict:
         return self.__dict__
