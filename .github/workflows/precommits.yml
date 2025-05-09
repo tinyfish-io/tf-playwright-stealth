@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
-  POETRY_VERSION: "1.8.3"
+  POETRY_VERSION: "2.0.1"
 
 jobs:
   python-pre-commit:
@@ -37,6 +37,7 @@ jobs:
         run: |
           poetry env use $pythonLocation/bin/python
           poetry install -n
+          echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
 
       - name: Run unit tests
         run: |
