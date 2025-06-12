@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.0
+- Drop Python 3.8 support
+
 ## 1.1.3
 - Updated dependencies to fix security vulnerabilities
 
