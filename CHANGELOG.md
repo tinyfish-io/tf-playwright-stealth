@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.5
+- Relaxed python requirement boundaries (>=3.8)
+
 ## 1.1.3
 - Updated dependencies to fix security vulnerabilities
 
