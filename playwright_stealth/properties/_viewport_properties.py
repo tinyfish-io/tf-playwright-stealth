@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Tuple
 import random
 
 
@@ -19,13 +18,13 @@ class ViewportProperties:
         self.outerWidth, self.outerHeight = self._generate_outer_dimensions()
         self.innerWidth, self.innerHeight = self._generate_inner_dimensions()
 
-    def _generate_viewport_dimensions(self) -> Tuple[int, int]:
+    def _generate_viewport_dimensions(self) -> tuple[int, int]:
         return 1920 + random.randint(-100, 100), 1080 + random.randint(-100, 100)
 
-    def _generate_outer_dimensions(self) -> Tuple[int, int]:
+    def _generate_outer_dimensions(self) -> tuple[int, int]:
         return self.width, self.height
 
-    def _generate_inner_dimensions(self) -> Tuple[int, int]:
+    def _generate_inner_dimensions(self) -> tuple[int, int]:
         return (
             self.width - random.randint(0, 20),
             self.height - random.randint(0, 20),

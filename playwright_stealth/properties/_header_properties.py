@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import List
 
 
 @dataclass
@@ -23,7 +22,7 @@ class HeaderProperties:
 
     def __init__(
         self,
-        brands: List[dict],
+        brands: list[dict],
         dnt: str,
         client_hint_headers_enabled: bool = True,
         **kwargs,
@@ -61,7 +60,7 @@ class HeaderProperties:
         else:
             return "Unknown"
 
-    def _generate_sec_ch_ua(self, brands: List[dict]) -> str:
+    def _generate_sec_ch_ua(self, brands: list[dict]) -> str:
         """Generates the Sec_Ch_Ua based brands generated"""
         merged_brands = "".join([f'"{brand["brand"]}";v="{brand["version"]}",' for brand in brands])
         return merged_brands
