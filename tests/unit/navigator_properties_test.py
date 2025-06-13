@@ -1,5 +1,6 @@
 import pytest
 from fake_http_header import FakeHttpHeader
+
 from playwright_stealth.properties._navigator_properties import NavigatorProperties
 
 
@@ -30,10 +31,7 @@ def test_initialization(navigator_properties, fake_headers, brands):
     assert navigator_properties.platform in ["MacIntel", "Win64", "Linux x86_x64"]
     assert navigator_properties.language == "en-US"
     assert isinstance(navigator_properties.languages, list)
-    assert (
-        navigator_properties.appVersion
-        == navigator_properties._generate_app_version(fake_headers["User-Agent"])
-    )
+    assert navigator_properties.appVersion == navigator_properties._generate_app_version(fake_headers["User-Agent"])
     assert navigator_properties.vendor in ["Google Inc.", ""]
     assert navigator_properties.deviceMemory == 8
     assert navigator_properties.hardwareConcurrency == 8
@@ -57,9 +55,7 @@ def test_generate_languages(navigator_properties):
     """Test the _generate_languages method."""
     accept_language = "en-US,en;q=0.9,fr;q=0.8"
     expected_languages = ["en-US", "en", "fr"]
-    assert (
-        navigator_properties._generate_languages(accept_language) == expected_languages
-    )
+    assert navigator_properties._generate_languages(accept_language) == expected_languages
 
 
 def test_generate_app_version(navigator_properties):
@@ -89,10 +85,7 @@ def test_as_dict(navigator_properties):
     assert navigator_dict["appVersion"] == navigator_properties.appVersion
     assert navigator_dict["vendor"] == navigator_properties.vendor
     assert navigator_dict["deviceMemory"] == navigator_properties.deviceMemory
-    assert (
-        navigator_dict["hardwareConcurrency"]
-        == navigator_properties.hardwareConcurrency
-    )
+    assert navigator_dict["hardwareConcurrency"] == navigator_properties.hardwareConcurrency
     assert navigator_dict["maxTouchPoints"] == navigator_properties.maxTouchPoints
     assert navigator_dict["doNotTrack"] == navigator_properties.doNotTrack
     assert navigator_dict["brands"] == navigator_properties.brands

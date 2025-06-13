@@ -1,3 +1,3 @@
-from ._properties import Properties, BrowserType
+from ._properties import BrowserType, Properties
 
-__ALL__ = ["Properties", "BrowserType"]
+__all__ = ["Properties", "BrowserType"]

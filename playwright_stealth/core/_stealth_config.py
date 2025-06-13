@@ -1,8 +1,9 @@
 import json
+import os
 from dataclasses import dataclass
 from typing import Optional
-import os
-from playwright_stealth.properties import Properties, BrowserType
+
+from playwright_stealth.properties import BrowserType, Properties
 
 
 def from_file(name) -> str:

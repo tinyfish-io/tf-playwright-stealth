@@ -1,8 +1,11 @@
-import pytest
-import agentql
 import logging
-from playwright.sync_api import sync_playwright, Page as SyncPage
-from playwright.async_api import async_playwright, Page as AsyncPage
+
+import agentql
+import pytest
+from playwright.async_api import Page as AsyncPage
+from playwright.async_api import async_playwright
+from playwright.sync_api import sync_playwright
+
 from .configs import (
     MultipleScriptConfig,
     chromeAppConfig,
@@ -29,11 +32,7 @@ log = logging.getLogger(__name__)
 def extract_query_lines(query_str) -> list[str]:
     """This function is used to extract the query lines from the query string"""
     lines = query_str.strip().splitlines()
-    return [
-        line.strip()
-        for line in lines
-        if line.strip() and not line.startswith("{") and not line.endswith("}")
-    ]
+    return [line.strip() for line in lines if line.strip() and not line.startswith("{") and not line.endswith("}")]
 
 
 def join_query_lines(query_lines) -> str:
@@ -107,7 +106,7 @@ def test_multiple_scripts(multiple_configs: MultipleScriptConfig):
 
 
 @pytest.mark.asyncio
-async def test_multiple_scripts(multiple_configs: MultipleScriptConfig):
+async def test_multiple_scripts_async(multiple_configs: MultipleScriptConfig):
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page: AsyncPage = await agentql.wrap_async(browser.new_page())

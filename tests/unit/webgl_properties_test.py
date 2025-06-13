@@ -1,6 +1,7 @@
-import pytest
-from mockito import when, unstub
 import random
+
+from mockito import unstub, when
+
 from playwright_stealth.properties._webgl_properties import WebGlProperties
 
 
@@ -38,9 +39,7 @@ def test_randomness_in_properties():
     webgl2 = WebGlProperties()
     # Since randomness is involved, properties may sometimes be the same
     # This test checks that the class can produce different properties
-    assert (
-        (webgl1.vendor != webgl2.vendor) or (webgl1.renderer != webgl2.renderer) or True
-    )
+    assert (webgl1.vendor != webgl2.vendor) or (webgl1.renderer != webgl2.renderer) or True
 
 
 def test_all_possible_properties():
@@ -49,7 +48,5 @@ def test_all_possible_properties():
     for _ in range(100):
         webgl = WebGlProperties()
         generated_props.add((webgl.vendor, webgl.renderer))
-    expected_props = {
-        (prop["vendor"], prop["renderer"]) for prop in webgl.webgl_properties
-    }
+    expected_props = {(prop["vendor"], prop["renderer"]) for prop in webgl.webgl_properties}
     assert generated_props == expected_props

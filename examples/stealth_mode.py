@@ -3,9 +3,9 @@ import logging
 import random
 
 from playwright.async_api import ProxySettings, async_playwright
-from playwright_stealth import stealth_async
-from playwright_stealth.core import StealthConfig, BrowserType
 
+from playwright_stealth import stealth_async
+from playwright_stealth.core import BrowserType, StealthConfig
 
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
@@ -23,9 +23,12 @@ PROXIES: list[ProxySettings] = [
 async def main():
     proxy: ProxySettings | None = random.choice(PROXIES) if PROXIES else None
 
-    async with async_playwright() as playwright, await playwright.chromium.launch(
-        headless=False,
-    ) as browser:
+    async with (
+        async_playwright() as playwright,
+        await playwright.chromium.launch(
+            headless=False,
+        ) as browser,
+    ):
         context = await browser.new_context(proxy=proxy)
         page = await context.new_page()
         await stealth_async(page, config=StealthConfig(browser_type=BrowserType.CHROME))

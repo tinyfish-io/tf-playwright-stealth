@@ -1,11 +1,16 @@
-import pytest
-import agentql
-import logging
-from playwright.sync_api import sync_playwright, Page as SyncPage
-from playwright.async_api import async_playwright, Page as AsyncPage
-from tests.utils import from_file
 import json
+import logging
+
+import agentql
+import pytest
+from playwright.async_api import Page as AsyncPage
+from playwright.async_api import async_playwright
+from playwright.sync_api import Page as SyncPage
+from playwright.sync_api import sync_playwright
+
 from playwright_stealth.properties import Properties
+from tests.utils import from_file
+
 from .configs import (
     ScriptConfig,
     chromeAppConfig,
@@ -13,17 +18,7 @@ from .configs import (
     chromeLoadTimesConfig,
     chromePluginConfig,
     chromeRuntimeConfig,
-    generateMagicArraysConfig,
-    iFrameContentWindowConfig,
-    mediaCodecsConfig,
-    navigatorHardWareConcurrencyConfig,
-    navigatorLanguagesConfig,
-    navigatorPermissionsConfig,
-    navigatorPluginsConfig,
     navigatorUserAgentConfig,
-    navigatorVendorConfig,
-    navigatorWebDriverConfig,
-    webGLVendorConfig,
 )
 
 log = logging.getLogger(__name__)
@@ -70,9 +65,7 @@ def test_all_scripts_sync(config: ScriptConfig):
         opts = json.dumps(properties.as_dict())
         opts = f"const opts = {opts}"
 
-        combined_script = (
-            opts + "\n" + utils_script + "\n" + magic_arrays_script + "\n" + config.script
-        )
+        combined_script = opts + "\n" + utils_script + "\n" + magic_arrays_script + "\n" + config.script
 
         page.add_init_script(combined_script)
         page.goto(config.url)
@@ -82,9 +75,7 @@ def test_all_scripts_sync(config: ScriptConfig):
             for key, value in response.items():
                 assert value == "True"
         except AssertionError:
-            page.screenshot(
-                path=f"tests/e2e/screenshots/{config.name}.png", full_page=True
-            )
+            page.screenshot(path=f"tests/e2e/screenshots/{config.name}.png", full_page=True)
             raise AssertionError(f"Test failed: {key} is {value}")
         finally:
             page.close()
@@ -106,9 +97,7 @@ async def test_all_scripts_async(config: ScriptConfig):
         opts = json.dumps(properties.as_dict())
         opts = f"const opts = {opts}"
 
-        combined_script = (
-            opts + "\n" + utils_script + "\n" + magic_arrays_script + "\n" + config.script
-        )
+        combined_script = opts + "\n" + utils_script + "\n" + magic_arrays_script + "\n" + config.script
 
         await page.add_init_script(combined_script)
         await page.goto(config.url)
@@ -118,9 +107,7 @@ async def test_all_scripts_async(config: ScriptConfig):
             for key, value in response.items():
                 assert value == "True"
         except AssertionError:
-            await page.screenshot(
-                path=f"tests/e2e/screenshots/{config.name}.png", full_page=True
-            )
+            await page.screenshot(path=f"tests/e2e/screenshots/{config.name}.png", full_page=True)
             raise AssertionError(f"Test failed: {key} is {value}")
         finally:
             await page.close()

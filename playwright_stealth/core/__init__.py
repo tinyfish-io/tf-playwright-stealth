@@ -1,3 +1,3 @@
-from ._stealth_config import StealthConfig, BrowserType
+from ._stealth_config import BrowserType, StealthConfig
 
-__ALL__ = ["StealthConfig", "BrowserType"]
+__all__ = ["StealthConfig", "BrowserType"]

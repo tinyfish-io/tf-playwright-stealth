@@ -1,26 +1,14 @@
-import pytest
-import agentql
 import logging
-from playwright.sync_api import sync_playwright, Page as SyncPage
-from playwright.async_api import async_playwright, Page as AsyncPage
+
+import agentql
+import pytest
+from playwright.async_api import Page as AsyncPage
+from playwright.async_api import async_playwright
+from playwright.sync_api import sync_playwright
+
 from .configs import (
     ScriptConfig,
     chromeAppConfig,
-    chromeCsiConfig,
-    chromeLoadTimesConfig,
-    chromePluginConfig,
-    chromeRuntimeConfig,
-    generateMagicArraysConfig,
-    iFrameContentWindowConfig,
-    mediaCodecsConfig,
-    navigatorHardWareConcurrencyConfig,
-    navigatorLanguagesConfig,
-    navigatorPermissionsConfig,
-    navigatorPluginsConfig,
-    navigatorUserAgentConfig,
-    navigatorVendorConfig,
-    navigatorWebDriverConfig,
-    webGLVendorConfig,
 )
 
 log = logging.getLogger(__name__)

@@ -1,16 +1,14 @@
 import pytest
 from playwright.sync_api import sync_playwright
+
 from playwright_stealth import stealth_sync
 
 
-@pytest.mark.skip(
-    "This test is meant to be ran manually, wrapped under a pytest test so it is not automatically ran."
-)
+@pytest.mark.skip("This test is meant to be ran manually, wrapped under a pytest test so it is not automatically ran.")
 def test_demo_with_stealth():
     """This test demonstrates how to use playwright-stealth with playwright"""
 
     executablePath = "C:\\Google\\Chrome\\Application\\chrome.exe"
-    ipAndPort = "221.1.90.67:9000"
     args = [
         "--no-sandbox",
         "--disable-infobars",
@@ -43,5 +41,5 @@ def test_demo_with_stealth():
         # return None
         print(f"window navigator webdriver value: {webdriver_flag}")
 
-        page.screenshot(path=f"example_with_stealth.png", full_page=True)
+        page.screenshot(path="example_with_stealth.png", full_page=True)
         browser.close()

@@ -1,13 +1,15 @@
 import logging
+
 import pytest
-from mockito import when, when2, unstub, mock
 from fake_http_header import FakeHttpHeader
-from playwright_stealth.properties._navigator_properties import NavigatorProperties
+from mockito import mock, unstub, when, when2
+
+import playwright_stealth.properties._properties as properties
 from playwright_stealth.properties._header_properties import HeaderProperties
+from playwright_stealth.properties._navigator_properties import NavigatorProperties
+from playwright_stealth.properties._properties import Properties
 from playwright_stealth.properties._viewport_properties import ViewportProperties
 from playwright_stealth.properties._webgl_properties import WebGlProperties
-from playwright_stealth.properties._properties import Properties
-import playwright_stealth.properties._properties as properties
 
 log = logging.getLogger(__name__)
 
@@ -28,9 +30,7 @@ def fake_headers():
 def mock_fake_http_header(fake_headers):
     """Mocks FakeHttpHeader used within the Properties class."""
     mock_instance = mock(FakeHttpHeader)
-    when2(properties.FakeHttpHeader, domain_code="com", browser="chrome").thenReturn(
-        mock_instance
-    )
+    when2(properties.FakeHttpHeader, domain_code="com", browser="chrome").thenReturn(mock_instance)
     mock_instance.user_agent = fake_headers["User-Agent"]
     when(mock_instance).as_header_dict().thenReturn(fake_headers)
     yield

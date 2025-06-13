@@ -43,10 +43,8 @@ jobs:
         run: |
           poetry run pytest tests/unit
 
-      - name: Lint check
-        run: |
-          poetry run pylint --disable=R,C playwright_stealth
+      - name: ruff check
+        uses: astral-sh/ruff-action@v3
 
-      - name: Code style check
-        run: |
-          poetry run black playwright_stealth --check --diff
+      - name: ruff format
+        run: ruff format --check --diff
