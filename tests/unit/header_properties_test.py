@@ -1,5 +1,6 @@
 import pytest
 from fake_http_header import FakeHttpHeader
+
 from playwright_stealth.properties._header_properties import HeaderProperties
 
 
@@ -30,18 +31,9 @@ def test_initialization(header_properties, fake_headers, brands):
     assert header_properties.referer == fake_headers["Referer"]
     assert header_properties.dnt == "1"
     assert header_properties.sec_ch_ua == header_properties._generate_sec_ch_ua(brands)
-    assert (
-        header_properties.sec_ch_ua_mobile
-        == header_properties._generate_sec_ch_ua_mobile()
-    )
-    assert (
-        header_properties.sec_ch_ua_platform
-        == header_properties._generate_sec_ch_ua_platform()
-    )
-    assert (
-        header_properties.sec_ch_ua_form_factors
-        == header_properties._generate_sec_ch_ua_form_factors()
-    )
+    assert header_properties.sec_ch_ua_mobile == header_properties._generate_sec_ch_ua_mobile()
+    assert header_properties.sec_ch_ua_platform == header_properties._generate_sec_ch_ua_platform()
+    assert header_properties.sec_ch_ua_form_factors == header_properties._generate_sec_ch_ua_form_factors()
 
 
 def test_generate_sec_ch_ua_platform(header_properties):
@@ -99,10 +91,7 @@ def test_as_dict(header_properties):
     assert headers_dict["sec-ch-ua"] == header_properties.sec_ch_ua
     assert headers_dict["sec-ch-ua-mobile"] == header_properties.sec_ch_ua_mobile
     assert headers_dict["sec-ch-ua-platform"] == header_properties.sec_ch_ua_platform
-    assert (
-        headers_dict["sec-ch-ua-form-factors"]
-        == header_properties.sec_ch_ua_form_factors
-    )
+    assert headers_dict["sec-ch-ua-form-factors"] == header_properties.sec_ch_ua_form_factors
 
 
 @pytest.mark.parametrize(
@@ -125,7 +114,7 @@ def test_generate_sec_ch_ua_platform_parametrized(user_agent, expected_platform)
             "Accept-encoding": "",
             "Accept": "",
             "Referer": "",
-        }
+        },
     )
     assert header_properties._generate_sec_ch_ua_platform() == expected_platform
 

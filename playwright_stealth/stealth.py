@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 from playwright.async_api import Page as AsyncPage
 from playwright.sync_api import Page as SyncPage
+
 from playwright_stealth.core import StealthConfig
-from playwright_stealth.properties import Properties, BrowserType
+from playwright_stealth.properties import BrowserType, Properties
 
 
 def combine_scripts(properties: Properties, config: StealthConfig):

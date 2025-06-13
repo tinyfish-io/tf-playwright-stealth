@@ -1,12 +1,14 @@
-import re
 import random
+import re
 from dataclasses import dataclass
+from enum import Enum
+
 from fake_http_header import FakeHttpHeader
+
 from ._header_properties import HeaderProperties
 from ._navigator_properties import NavigatorProperties
 from ._viewport_properties import ViewportProperties
 from ._webgl_properties import WebGlProperties
-from enum import Enum
 
 
 class BrowserType(Enum):
@@ -17,7 +19,6 @@ class BrowserType(Enum):
 
 @dataclass
 class Properties:
-
     header: HeaderProperties
     navigator: NavigatorProperties
     viewport: ViewportProperties
@@ -39,9 +40,7 @@ class Properties:
             is not BrowserType.FIREFOX,  # Firefox does not support client hints
             **spoofed_headers.as_header_dict(),
         )
-        self.navigator = NavigatorProperties(
-            brands=brands, dnt=dnt, **spoofed_headers.as_header_dict()
-        )
+        self.navigator = NavigatorProperties(brands=brands, dnt=dnt, **spoofed_headers.as_header_dict())
         self.viewport = ViewportProperties()
         self.webgl = WebGlProperties()
         self.runOnInsecureOrigins = None
@@ -82,9 +81,7 @@ class Properties:
 
         escaped_chars = [" ", " ", ";"]
 
-        greasey_brand = (
-            f"{escaped_chars[order[0]]}Not{escaped_chars[order[1]]}A{escaped_chars[order[2]]}Brand"
-        )
+        greasey_brand = f"{escaped_chars[order[0]]}Not{escaped_chars[order[1]]}A{escaped_chars[order[2]]}Brand"
 
         greased_brand_version_list = [{}, {}, {}]
 

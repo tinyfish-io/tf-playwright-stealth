@@ -1,6 +1,7 @@
-import pytest
-from mockito import when, unstub
 import random
+
+from mockito import unstub, when
+
 from playwright_stealth.properties._viewport_properties import ViewportProperties
 
 
@@ -95,9 +96,7 @@ def test_randomness_in_dimensions():
         viewport2.innerHeight,
     )
     # Since randomness is involved, dimensions may occasionally be the same, which is acceptable
-    assert (
-        dimensions1 != dimensions2 or True
-    )  # Accept possible equality due to randomness
+    assert dimensions1 != dimensions2 or True  # Accept possible equality due to randomness
 
 
 def test_custom_kwargs():
