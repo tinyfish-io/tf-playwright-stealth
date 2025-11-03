@@ -3,9 +3,7 @@
 # If you need to change this file, create a pull request in
 # https://github.com/tinyfish-io/github-control
 
-.github/workflows/vuln-scanner-pr.yml @tinyfish-io/security_team
+* @tinyfish-io/open-source-team
 .github/workflows/secrets-scanner.yml @tinyfish-io/security_team
+.github/workflows/vuln-scanner-pr.yml @tinyfish-io/security_team
 osv-scanner.toml @tinyfish-io/security_team
-
-
-*   @tinyfish-io/open-source-team
