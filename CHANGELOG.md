@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.1-1.2.2
+- Bump dependencies versions
+
 ## 1.2.0
 - Drop Python 3.8 support
 
