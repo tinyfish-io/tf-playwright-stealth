@@ -1,6 +1,4 @@
-# 🥷🏻 tf-playwright-stealth [![PyPI version](https://img.shields.io/pypi/v/tf-playwright-stealth)](https://pypi.org/project/tf-playwright-stealth/) [![AgentQL](https://img.shields.io/badge/AgentQL-AgentQL-informational)](https://agentql.com) [![Join Discord](https://img.shields.io/badge/join-discord-infomational)](https://discord.gg/agentql)
-
-
+# 🥷🏻 tf-playwright-stealth [![PyPI version](https://img.shields.io/pypi/v/tf-playwright-stealth)](https://pypi.org/project/tf-playwright-stealth/) [![AgentQL](https://img.shields.io/badge/AgentQL-AgentQL-informational)](https://agentql.com) [![Join Discord](https://img.shields.io/badge/join-discord-infomational)](https://discord.gg/tinyfish)
 
 > Transplanted from [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth).
 
@@ -15,6 +13,7 @@ pip install tf-playwright-stealth
 ## Usage
 
 ### sync
+
 ```python
 from playwright.sync_api import sync_playwright
 from playwright_stealth import stealth_sync
@@ -29,7 +28,6 @@ with sync_playwright() as p:
     page.screenshot(path=f"example_with_stealth.png", full_page=True)
     browser.close()
 ```
-
 
 ### async
 
@@ -47,7 +45,9 @@ with async_playwright() as p:
     await page.screenshot(path=f"example_with_stealth_async.png", full_page=True)
     await browser.close()
 ```
+
 ## Results
+
 From [bot.sannysoft.com](https://bot.sannysoft.com/)
 | Headless | Headful |
 |----------|---------|
