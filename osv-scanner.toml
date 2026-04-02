@@ -5,5 +5,5 @@ reason = "LOW severity (CVSS 3.3). As of 2026-03-26, pygments 2.19.2 is marked l
 
 [[IgnoredVulns]]
 id = "GHSA-gc5v-m9x4-r6x2"
-ignoreUntil = 2026-07-01T00:00:00Z
+ignoreUntil = 2026-07-01
 reason = "CVE-2026-25645 (MEDIUM). requests.utils.extract_zipped_paths() uses a predictable temp path. Advisory explicitly states: 'Standard usage of the Requests library is not affected — only applications that call extract_zipped_paths() directly are impacted.' tf-playwright-stealth does not call this function. Fix requires requests>=2.33.0 which bumps the Python floor to >=3.10, incompatible with our Python >=3.9 support range."
