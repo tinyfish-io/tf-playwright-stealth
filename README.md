@@ -32,18 +32,22 @@ with sync_playwright() as p:
 ### async
 
 ```python
+import async
 from playwright.async_api import async_playwright
 from playwright_stealth import stealth_async
 
-with async_playwright() as p:
-    browser = await p.chromium.launch(
-            headless=True,
-        )
-    page = await browser.new_page()
-    await stealth_async(page)
-    await page.goto("https://bot.sannysoft.com/")
-    await page.screenshot(path=f"example_with_stealth_async.png", full_page=True)
-    await browser.close()
+async def main():
+    with async_playwright() as p:
+        browser = await p.chromium.launch(
+                headless=True,
+            )
+        page = await browser.new_page()
+        await stealth_async(page)
+        await page.goto("https://bot.sannysoft.com/")
+        await page.screenshot(path=f"example_with_stealth_async.png", full_page=True)
+        await browser.close()
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 ## Results
