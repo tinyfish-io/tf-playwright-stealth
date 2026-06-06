@@ -32,7 +32,7 @@ with sync_playwright() as p:
 ### async
 
 ```python
-import async
+import asyncio
 from playwright.async_api import async_playwright
 from playwright_stealth import stealth_async
 
